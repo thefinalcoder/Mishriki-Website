@@ -2,33 +2,37 @@
 <html>
 <head>
     <title>Welcome to Mishriki.org!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
+            font-family: 'Ubuntu', sans-serif; /* Set Ubuntu as the font family */
             text-align: center; /* Center text alignment for all text elements */
-            background-color: lavender;
+            background-color: black; /* Make the entire page background black */
+            color: white; /* Set text color to white */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
         img {
             display: block; /* Make the image a block-level element */
-            margin: 0 auto; /* Center the image by automatically adjusting margins */
+            margin: 20px auto; /* Center the image and add margin for spacing */
             width: 300px; /* Resize the image width */
             height: 200px; /* Resize the image height */
         }
-        .text-box {
-            background-color: black; /* Black background for the text box */
-            color: white; /* White text color */
-            padding: 20px; /* Padding around the text */
-            display: inline-block; /* Makes the box shrink to fit content */
-            margin-top: 20px; /* Space above the box */
+        a {
+            color: white; /* Ensure links are white */
+            text-decoration: none; /* Remove underline from links */
+        }
+        a:hover {
+            text-decoration: underline; /* Underline links on hover for better visibility */
         }
     </style>
 </head>
 <body>
-    <div class="text-box"> <!-- Container for text with black background -->
-        <h1>Welcome to Mishriki.org!</h1>
-        <h2>The Website For All Things Mishriki</h2>
-        <p>Go Mishrikis!</p>
-        <a href="https://www.mishriki.org" style="color: white;">Visit the Official Mishriki Website</a>
-        <br> <!-- Line break for spacing -->
-    </div>
+    <h1>Welcome to Mishriki.org!</h1>
+    <h2>The Website For All Things Mishriki</h2>
+    <p>Go Mishrikis!</p>
+    <a href="https://www.mishriki.org">Visit the Official Mishriki Website</a>
+    <br> <!-- Line break for spacing -->
+    <img src="your-image-url.jpg" alt="">
 </body>
 </html>
