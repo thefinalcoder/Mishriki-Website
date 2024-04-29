@@ -4,13 +4,17 @@
     <title>Welcome to Mishriki.org!</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Ubuntu', sans-serif; /* Set Ubuntu as the font family */
-            text-align: center; /* Center text alignment for all text elements */
-            background-color: black; /* Make the entire page background black */
-            color: white; /* Set text color to white */
+        html, body {
+            height: 100%; /* Full height for the body and HTML */
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
+            display: flex; /* Enables flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            background-color: black; /* Make the entire page background black */
+            color: white; /* Set text color to white */
+            font-family: 'Ubuntu', sans-serif; /* Set Ubuntu as the font family */
+            text-align: center; /* Center text alignment */
         }
         a {
             color: white; /* Ensure links are white */
@@ -22,8 +26,10 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to Mishriki.org!</h1>
-    <h2>The Website For All Things Mishriki</h2>
-    <a href="images.html">Visit Our Image Gallery</a>
+    <div>
+        <h1>Welcome to Mishriki.org!</h1>
+        <h2>The Website For All Things Mishriki</h2>
+        <a href="images.html">Visit Our Image Gallery</a>
+    </div>
 </body>
 </html>
