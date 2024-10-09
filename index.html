@@ -4,36 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eli Mishriki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: black;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Ubuntu', sans-serif;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
         .content {
-            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            margin-right: 20px;
+        }
+
+        .profile p {
+            font-size: 1.2em;
         }
 
         .quote {
-            margin-top: 40px;
+            margin-top: 20px;
             font-style: italic;
+            font-size: 1.2em;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
     <div class="content">
-        <img src=profile.jpg alt="Eli Mishriki" width="150" height="150">
-        <p>Eli Mishriki<br>
-        aka: mesh25<br><br>
-        height: 5'8"<br>
-        weight: 155<br>
-        occupation: Software Engineer<br>
-        ethnicity: Coptic<br>
-        location: Pismo Beach<br>
-        </p>
+        <div class="profile">
+            <img src="profile.jpg" alt="Eli Mishriki" width="150" height="150">
+            <p>Eli Mishriki<br>
+            aka: mesh25<br><br>
+            height: 5'8"<br>
+            weight: 155<br>
+            occupation: Software Engineer<br>
+            ethnicity: Coptic<br>
+            location: Pismo Beach<br>
+            </p>
+        </div>
         
         <div class="quote">
             "I have discovered this principle of life—that when I want to do what is right, I inevitably do what is wrong. <br>
@@ -43,4 +70,3 @@
 
 </body>
 </html>
-
