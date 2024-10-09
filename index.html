@@ -20,11 +20,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px; /* Extend further down */
+            padding: 20px; /* Initial padding */
             position: fixed;
             top: 0;
             width: 100%;
             box-sizing: border-box;
+            transition: all 0.3s ease-in-out; /* Smooth transition */
+            border-bottom: 2px solid white; /* White bottom border */
+            z-index: 1000; /* Ensure header stays on top */
+        }
+
+        .header.shrink {
+            padding: 10px; /* Shrink padding on scroll */
         }
 
         .header .links {
@@ -59,7 +66,7 @@
 </head>
 <body>
 
-    <div class="header">
+    <div class="header" id="header">
         <div class="title">mishriki.org</div>
         <div class="links">
             <a href="aboutme.html">About Me</a>
@@ -71,6 +78,18 @@
     <div class="content">
         <h1>Welcome to Mishriki.org</h1>
     </div>
+
+    <script>
+        // Listen for scroll events
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+        });
+    </script>
 
 </body>
 </html>
