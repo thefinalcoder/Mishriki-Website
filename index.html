@@ -9,37 +9,69 @@
             background-color: black;
             color: white;
             font-family: 'Times New Roman', Times, serif;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
         }
 
+        .header {
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header .title {
+            font-size: 2em;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header a {
+            color: black;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
         .content {
             text-align: center;
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5em;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 60px; /* Adjust for header height */
         }
     </style>
 </head>
 <body>
 
+    <div class="header">
+        <div>mishriki.org</div>
+        <div class="title">Welcome to Mishriki.org</div>
+        <div class="links">
+            <a href="aboutme.html">About Me</a>
+            <a href="blog.html">Blog</a>
+            <a href="https://docs.google.com/document/d/11SqVD1z8I1lLszXc2DWmk7PwoCxTwM1iUWBhQbGWlMA/edit" target="_blank">Resume</a>
+        </div>
+    </div>
+
     <div class="content">
         <h1>Welcome to Mishriki.org</h1>
-        <a href="aboutme.html">Eli Mishriki</a><br>
-        <a href="blog.html">Blog</a>
     </div>
 
 </body>
