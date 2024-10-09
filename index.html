@@ -6,7 +6,7 @@
     <title>Welcome to Mishriki.org</title>
     <style>
         body {
-            background-color: black;
+            background-color: #d3d3d3; /* Lighter gray */
             color: white;
             font-family: 'Times New Roman', Times, serif;
             margin: 0;
@@ -15,22 +15,16 @@
         }
 
         .header {
-            background-color: white;
-            color: black;
+            background-color: #333; /* Darkish gray */
+            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 20px 20px; /* Extend further down */
             position: fixed;
             top: 0;
             width: 100%;
             box-sizing: border-box;
-        }
-
-        .header .title {
-            font-size: 2em;
-            text-align: center;
-            flex-grow: 1;
         }
 
         .header .links {
@@ -39,7 +33,7 @@
         }
 
         .header a {
-            color: black;
+            color: white;
             text-decoration: none;
             font-size: 1em;
         }
@@ -54,15 +48,18 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin-top: 60px; /* Adjust for header height */
+            margin-top: 100px; /* Adjust for header height */
+        }
+
+        .content h1 {
+            font-size: 3em; /* Make the text bigger */
+            color: black; /* Change text color to black */
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div>mishriki.org</div>
-        <div class="title">Welcome to Mishriki.org</div>
         <div class="links">
             <a href="aboutme.html">About Me</a>
             <a href="blog.html">Blog</a>
