@@ -13,9 +13,10 @@
             text-align: center;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             margin: 0;
+            padding-top: 20px;
         }
 
         .content {
@@ -27,16 +28,19 @@
 
         .profile {
             display: flex;
+            flex-direction: column;
             align-items: center;
             margin-bottom: 20px;
         }
 
         .profile img {
-            margin-right: 20px;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 20px;
         }
 
         .profile p {
-            font-size: 1.2em;
+            font-size: 1.5em;
         }
 
         .quote {
@@ -51,11 +55,11 @@
 
     <div class="content">
         <div class="profile">
-            <img src="profile.jpg" alt="Eli Mishriki" width="150" height="150">
+            <img src="selfie.jpg" alt="Eli Mishriki">
             <p>Eli Mishriki<br>
             aka: mesh25<br><br>
             height: 5'8"<br>
-            weight: 155<br>
+            weight: 160<br>
             occupation: Software Engineer<br>
             ethnicity: Coptic<br>
             location: Pismo Beach<br>
@@ -64,7 +68,7 @@
         
         <div class="quote">
             "I find then a law, that evil is present with me, the one who wills to do good. For I delight in the law of God according to the inward man. But I see another law in my members, warring against the law of my mind, and bringing me into captivity to the law of sin which is in my members. O wretched man that I am! Who will deliver me from this body of death? I thank God—through Jesus Christ our Lord! So then, with the mind I myself serve the law of God, but with the flesh the law of sin." <br>
-            Romans 7:21-25"
+            Romans 7:21-25
         </div>
     </div>
 
