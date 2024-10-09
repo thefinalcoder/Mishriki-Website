@@ -52,6 +52,7 @@
         .content {
             text-align: center;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -61,6 +62,28 @@
         .content h1 {
             font-size: 3em; /* Make the text bigger */
             color: black; /* Change text color to black */
+        }
+
+        .blog-posts {
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .blog-post {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post h2 {
+            margin-top: 0;
+        }
+
+        .blog-post p {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -77,6 +100,20 @@
 
     <div class="content">
         <h1>Welcome to Mishriki.org</h1>
+        <div class="blog-posts">
+            <div class="blog-post">
+                <h2><a href="blog.html">Blog Post 10/8/24</a></h2>
+                <p>Hello World!</p>
+            </div>
+            <div class="blog-post">
+                <h2>Blog Post Title 2</h2>
+                <p>This is a short preview of the second blog post...</p>
+            </div>
+            <div class="blog-post">
+                <h2>Blog Post Title 3</h2>
+                <p>This is a short preview of the third blog post...</p>
+            </div>
+        </div>
     </div>
 
     <script>
