@@ -74,10 +74,11 @@
             position: relative;
         }
 
-        /* Glitch effect */
+        /* Dynamic glitch effect */
         .quote {
             position: relative;
             display: inline-block;
+            white-space: pre-wrap;
         }
 
         .quote::before, .quote::after {
@@ -89,35 +90,36 @@
             height: 100%;
             color: #f00; /* Red glitch effect */
             overflow: hidden;
-            clip: rect(0, 900px, 0, 0);
         }
 
         .quote::after {
             color: #00f; /* Blue glitch effect */
+            z-index: -1;
         }
 
         /* Animation for the glitch effect */
         @keyframes glitch {
-            0% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
-            10% { clip: rect(10px, 9999px, 50px, 0); transform: translate(-2px, -2px); }
-            20% { clip: rect(20px, 9999px, 40px, 0); transform: translate(2px, 2px); }
-            30% { clip: rect(30px, 9999px, 30px, 0); transform: translate(-4px, 0); }
-            40% { clip: rect(40px, 9999px, 20px, 0); transform: translate(4px, 4px); }
-            50% { clip: rect(50px, 9999px, 10px, 0); transform: translate(-1px, -1px); }
-            60% { clip: rect(60px, 9999px, 60px, 0); transform: translate(0, 4px); }
-            70% { clip: rect(70px, 9999px, 70px, 0); transform: translate(1px, 2px); }
-            80% { clip: rect(80px, 9999px, 80px, 0); transform: translate(-3px, 3px); }
-            90% { clip: rect(90px, 9999px, 90px, 0); transform: translate(0, -2px); }
-            100% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-2px, -2px); }
+            20% { transform: translate(2px, 2px); }
+            30% { transform: translate(-4px, 0); }
+            40% { transform: translate(4px, 4px); }
+            50% { transform: translate(-1px, -1px); }
+            60% { transform: translate(0, 4px); }
+            70% { transform: translate(1px, 2px); }
+            80% { transform: translate(-3px, 3px); }
+            90% { transform: translate(0, -2px); }
+            100% { transform: translate(0, 0); }
         }
 
         .quote::before {
-            animation: glitch 1s infinite linear alternate-reverse;
+            animation: glitch 1.5s infinite linear alternate-reverse;
         }
 
         .quote::after {
-            animation: glitch 1s infinite linear alternate;
+            animation: glitch 1.5s infinite linear alternate;
         }
+
     </style>
 </head>
 <body>
@@ -155,15 +157,21 @@
             "I can do all things through him who strengthens me. Philippians 4:13",
             "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law. Galatians 5:22-23",
             "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. John 3:16",
-            "I can do all things through him who strengthens me. Philippians 4:13",
             "Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. Love does not delight in evil but rejoices with the truth. It always protects, always trusts, always hopes, always perseveres. 1 Corinthians 13:4-7"
         ];
 
         const randomVerse = verses[Math.floor(Math.random() * verses.length)];
-        document.getElementById('quote').innerText = randomVerse;
-        document.getElementById('quote').setAttribute('data-text', randomVerse);
+        const quoteElement = document.getElementById('quote');
+        quoteElement.innerText = randomVerse;
+        quoteElement.setAttribute('data-text', randomVerse);
+
+        // Adjust glitch animation based on the length of the text
+        const charCount = randomVerse.length;
+        const animationDuration = Math.max(1.5, charCount / 100); // Longer quotes get longer glitch duration
+        document.querySelectorAll('.quote::before, .quote::after').forEach(el => {
+            el.style.animationDuration = `${animationDuration}s`;
+        });
     </script>
 
 </body>
 </html>
-
