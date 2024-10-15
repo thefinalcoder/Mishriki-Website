@@ -125,8 +125,8 @@
         h1::before, .blog-post h2::before {
             content: attr(data-text);
             position: absolute;
-            top: 0;
-            left: 2px;
+            top: -5px; /* Move glitch effect up */
+            left: 5px; /* Offset glitch effect */
             text-shadow: -2px 0 #ff0000; /* Red shadow for glitch */
             background: black;
             overflow: hidden;
@@ -180,4 +180,5 @@
 
 </body>
 </html>
+
 
