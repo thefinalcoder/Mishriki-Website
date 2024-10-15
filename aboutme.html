@@ -6,9 +6,9 @@
     <title>Eli Mishriki</title>
     <style>
         body {
-            background-color: black;
-            color: white;
-            font-family: 'Times New Roman', Times, serif;
+            background-color: #111; /* Dark background */
+            color: #0f0; /* Green text */
+            font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -17,6 +17,7 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* Dark texture */
         }
 
         .content {
@@ -37,20 +38,31 @@
 
         .profile img {
             width: 100%;
-            max-width: 220px; /* Slightly larger max-width */
+            max-width: 220px;
             height: auto;
             margin-right: 20px;
+            border: 2px solid #0f0; /* Green border */
         }
 
         .profile p {
             font-size: 1.2em; /* Slightly larger font size */
             text-align: left;
+            color: #0f0; /* Green text */
         }
 
         .profile .links {
-            margin-left: auto; /* Align to the right */
-            font-size: 1.2em; /* Slightly larger font size */
+            margin-left: auto;
+            font-size: 1.2em;
             text-align: left;
+        }
+
+        .profile .links a {
+            color: #ff0000; /* Red links */
+            text-decoration: none;
+        }
+
+        .profile .links a:hover {
+            text-decoration: line-through;
         }
 
         .quote {
@@ -58,6 +70,42 @@
             font-style: italic;
             font-size: 1.2em; /* Slightly larger font size */
             text-align: center;
+            color: #0f0; /* Green text */
+        }
+
+        /* Glitch effect */
+        @keyframes glitch {
+            0% { clip: rect(24px, 9999px, 85px, 0); }
+            5% { clip: rect(12px, 9999px, 60px, 0); }
+            10% { clip: rect(35px, 9999px, 12px, 0); }
+            15% { clip: rect(24px, 9999px, 55px, 0); }
+            20% { clip: rect(64px, 9999px, 60px, 0); }
+            25% { clip: rect(17px, 9999px, 95px, 0); }
+            30% { clip: rect(15px, 9999px, 90px, 0); }
+        }
+
+        p, .quote {
+            position: relative;
+        }
+
+        p::before, .quote::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 2px;
+            text-shadow: -2px 0 #ff0000;
+            background: black;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch 2s infinite;
+        }
+
+        p::before {
+            color: #00f;
+        }
+
+        .quote::before {
+            color: #ffff00;
         }
     </style>
 </head>
@@ -66,7 +114,14 @@
     <div class="content">
         <div class="profile">
             <img src="awesome.jpg" alt="Eli Mishriki">
-            <p>
+            <p data-text="Eli Mishriki
+                aka: mesh25
+                Height: 5'8"
+                Weight: 160
+                Occupation: Software Engineer
+                Ethnicity: Coptic
+                Nationality: American
+                Location: Pismo Beach">
                 Eli Mishriki<br>
                 aka: mesh25<br>
                 Height: 5'8"<br>
@@ -78,12 +133,12 @@
             </p>
             <div class="links">
                 <br>Links:<br>
-                <a href="https://www.linkedin.com/in/elimishriki/" target="_blank" style="color: white;">LinkedIn</a><br>
-                <a href="https://github.com/thefinalcoder" target="_blank" style="color: white;">Github</a>
+                <a href="https://www.linkedin.com/in/elimishriki/" target="_blank">LinkedIn</a><br>
+                <a href="https://github.com/thefinalcoder" target="_blank">Github</a>
             </div>
         </div>
         
-        <div class="quote" id="quote">
+        <div class="quote" id="quote" data-text="">
             <!-- Verse will be inserted here by JavaScript -->
         </div>
     </div>
@@ -102,6 +157,7 @@
 
         const randomVerse = verses[Math.floor(Math.random() * verses.length)];
         document.getElementById('quote').innerText = randomVerse;
+        document.getElementById('quote').setAttribute('data-text', randomVerse);
     </script>
 
 </body>
