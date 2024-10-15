@@ -7,7 +7,7 @@
     <style>
         body {
             background-color: #111; /* Dark background */
-            color: #0f0; /* Green text */
+            color: #fff; /* White text */
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
@@ -41,13 +41,13 @@
             max-width: 220px;
             height: auto;
             margin-right: 20px;
-            border: 2px solid #0f0; /* Green border */
+            border: 2px solid #fff; /* White border */
         }
 
         .profile p {
             font-size: 1.2em; /* Slightly larger font size */
             text-align: left;
-            color: #0f0; /* Green text */
+            color: #fff; /* White text */
         }
 
         .profile .links {
@@ -57,7 +57,7 @@
         }
 
         .profile .links a {
-            color: #ff0000; /* Red links */
+            color: #fff; /* White links */
             text-decoration: none;
         }
 
@@ -70,7 +70,7 @@
             font-style: italic;
             font-size: 1.2em; /* Slightly larger font size */
             text-align: center;
-            color: #0f0; /* Green text */
+            color: #fff; /* White text */
             position: relative;
         }
 
@@ -88,12 +88,12 @@
             top: 0;
             width: 100%;
             height: 100%;
-            color: #f00; /* Red glitch effect */
+            color: #000; /* Black glitch effect */
             overflow: hidden;
         }
 
         .quote::after {
-            color: #00f; /* Blue glitch effect */
+            color: #fff; /* White glitch effect */
             z-index: -1;
         }
 
@@ -113,11 +113,11 @@
         }
 
         .quote::before {
-            animation: glitch 1.5s infinite linear alternate-reverse;
+            animation: glitch 3s infinite linear alternate-reverse;
         }
 
         .quote::after {
-            animation: glitch 1.5s infinite linear alternate;
+            animation: glitch 3s infinite linear alternate;
         }
 
     </style>
@@ -167,7 +167,7 @@
 
         // Adjust glitch animation based on the length of the text
         const charCount = randomVerse.length;
-        const animationDuration = Math.max(1.5, charCount / 100); // Longer quotes get longer glitch duration
+        const animationDuration = Math.max(3, charCount / 100); // Slower glitch duration
         document.querySelectorAll('.quote::before, .quote::after').forEach(el => {
             el.style.animationDuration = `${animationDuration}s`;
         });
