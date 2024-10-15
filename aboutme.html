@@ -36,12 +36,35 @@
             width: 100%;
         }
 
+        /* Glitch effect applied to profile image */
         .profile img {
             width: 100%;
             max-width: 220px;
             height: auto;
             margin-right: 20px;
             border: 2px solid #fff; /* White border */
+            position: relative;
+        }
+
+        .profile img::before, .profile img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('awesome.jpg') no-repeat center center / cover;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .profile img::before {
+            animation: glitch 3s infinite linear alternate-reverse;
+        }
+
+        .profile img::after {
+            animation: glitch 3s infinite linear alternate;
+            z-index: -2;
         }
 
         .profile p {
@@ -71,33 +94,10 @@
             font-size: 1.2em; /* Slightly larger font size */
             text-align: center;
             color: #fff; /* White text */
-            position: relative;
         }
 
-        /* Dynamic glitch effect */
-        .quote {
-            position: relative;
-            display: inline-block;
-            white-space: pre-wrap;
-        }
-
-        .quote::before, .quote::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            color: #000; /* Black glitch effect */
-            overflow: hidden;
-        }
-
-        .quote::after {
-            color: #fff; /* White glitch effect */
-            z-index: -1;
-        }
-
-        /* Animation for the glitch effect */
+        /* Remove the glitch effect from the quote */
+        
         @keyframes glitch {
             0% { transform: translate(0, 0); }
             10% { transform: translate(-2px, -2px); }
@@ -110,14 +110,6 @@
             80% { transform: translate(-3px, 3px); }
             90% { transform: translate(0, -2px); }
             100% { transform: translate(0, 0); }
-        }
-
-        .quote::before {
-            animation: glitch 3s infinite linear alternate-reverse;
-        }
-
-        .quote::after {
-            animation: glitch 3s infinite linear alternate;
         }
 
     </style>
@@ -144,7 +136,7 @@
             </div>
         </div>
         
-        <div class="quote" id="quote" data-text="">
+        <div class="quote" id="quote">
             <!-- Verse will be inserted here by JavaScript -->
         </div>
     </div>
@@ -163,14 +155,7 @@
         const randomVerse = verses[Math.floor(Math.random() * verses.length)];
         const quoteElement = document.getElementById('quote');
         quoteElement.innerText = randomVerse;
-        quoteElement.setAttribute('data-text', randomVerse);
 
-        // Adjust glitch animation based on the length of the text
-        const charCount = randomVerse.length;
-        const animationDuration = Math.max(3, charCount / 100); // Slower glitch duration
-        document.querySelectorAll('.quote::before, .quote::after').forEach(el => {
-            el.style.animationDuration = `${animationDuration}s`;
-        });
     </script>
 
 </body>
