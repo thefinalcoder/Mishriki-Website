@@ -6,32 +6,33 @@
     <title>Welcome to Mishriki.org</title>
     <style>
         body {
-            background-color: #a9a9a9; /* Darker gray */
-            color: white;
-            font-family: 'Times New Roman', Times, serif;
+            background-color: #111; /* Dark background */
+            color: #0f0; /* Green text */
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* Dark texture */
         }
 
         .header {
-            background-color: #000; /* Black */
-            color: white;
+            background-color: black; /* Black header */
+            color: #0f0; /* Green text for links */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px; /* Initial padding */
+            padding: 20px;
             position: fixed;
             top: 0;
             width: 100%;
             box-sizing: border-box;
-            transition: all 0.3s ease-in-out; /* Smooth transition */
-            border-bottom: 2px solid white; /* White bottom border */
-            z-index: 1000; /* Ensure header stays on top */
+            transition: all 0.3s ease-in-out;
+            border-bottom: 2px solid #0f0; /* Green border */
+            z-index: 1000;
         }
 
         .header.shrink {
-            padding: 10px; /* Shrink padding on scroll */
+            padding: 10px;
         }
 
         .header .links {
@@ -40,13 +41,13 @@
         }
 
         .header a {
-            color: white;
+            color: #0f0; /* Green links */
             text-decoration: none;
             font-size: 1em;
         }
 
         .header a:hover {
-            text-decoration: underline;
+            text-decoration: line-through;
         }
 
         .content {
@@ -56,25 +57,27 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin-top: 80px; /* Adjust for header height */
+            margin-top: 80px;
         }
 
         .content h1 {
-            font-size: 4em; /* Make the text bigger */
-            color: black; /* Change text color to black */
-            margin-bottom: 10px; /* Add some space below the title */
+            font-size: 4em;
+            color: #ff0000; /* Red text */
+            margin-bottom: 10px;
+            position: relative;
+            text-transform: uppercase;
         }
 
         .content .subtitle {
             font-size: 2em;
-            color: black;
+            color: #0f0;
             margin-top: 10px;
         }
 
         .content .bar {
-            width: 50px; /* Short line */
+            width: 50px;
             height: 2px;
-            background-color: black;
+            background-color: #0f0;
             margin: 10px 0;
         }
 
@@ -84,20 +87,59 @@
         }
 
         .blog-post {
-            background-color: #a9a9a9; /* Match the rest of the page's darker gray color */
-            color: black;
+            background-color: #111; /* Darker background */
+            color: #0f0; /* Green text */
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #0f0; /* Green border */
         }
 
         .blog-post h2 {
             margin-top: 0;
         }
 
+        .blog-post a {
+            color: #ff0000; /* Red blog post links */
+        }
+
         .blog-post p {
             margin-bottom: 0;
+        }
+
+        /* Glitch effect */
+        @keyframes glitch {
+            0% { clip: rect(24px, 9999px, 85px, 0); }
+            5% { clip: rect(12px, 9999px, 60px, 0); }
+            10% { clip: rect(35px, 9999px, 12px, 0); }
+            15% { clip: rect(24px, 9999px, 55px, 0); }
+            20% { clip: rect(64px, 9999px, 60px, 0); }
+            25% { clip: rect(17px, 9999px, 95px, 0); }
+            30% { clip: rect(15px, 9999px, 90px, 0); }
+        }
+
+        h1, .blog-post h2 {
+            position: relative;
+        }
+
+        h1::before, .blog-post h2::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 2px;
+            text-shadow: -2px 0 #ff0000; /* Red shadow for glitch */
+            background: black;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch 2s infinite;
+        }
+
+        h1::before {
+            color: #0000ff; /* Blue glitch layer */
+        }
+
+        .blog-post h2::before {
+            color: #ffff00; /* Yellow glitch for blog post */
         }
     </style>
 </head>
@@ -113,12 +155,12 @@
     </div>
 
     <div class="content">
-        <h1>Welcome to Mishriki.org</h1>
+        <h1 data-text="Welcome to Mishriki.org">Welcome to Mishriki.org</h1>
         <div class="bar"></div>
         <div class="subtitle">for all things Mishriki</div>
         <div class="blog-posts">
             <div class="blog-post">
-                <h2><a href="blog.html">Blog Post 10/8/24</a></h2>
+                <h2 data-text="Blog Post 10/8/24"><a href="blog.html">Blog Post 10/8/24</a></h2>
                 <p>Hello World!</p>
             </div>
         </div>
@@ -138,3 +180,4 @@
 
 </body>
 </html>
+
