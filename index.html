@@ -51,19 +51,39 @@
             padding: 10px;
         }
 
-        .header .links {
-            display: flex;
-            gap: 20px;
+        /* Dropdown menu */
+        .header .dropdown {
+            position: relative;
+            display: inline-block;
         }
 
-        .header a {
-            color: #fff;
+        .header .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .header .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
             text-decoration: none;
-            font-size: 1.2em;
+            display: block;
+            text-align: left;
         }
 
-        .header a:hover {
-            text-decoration: line-through;
+        .header .dropdown-content a:hover {
+            background-color: #333;
+        }
+
+        .header .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .header .dropdown:hover .dropbtn {
+            background-color: #111;
         }
 
         .content {
@@ -241,10 +261,13 @@
 
     <div class="header" id="header">
         <div class="title">mishriki.org</div>
-        <div class="links">
-            <a href="aboutme.html">About Me</a>
-            <a href="blog.html">Blog</a>
-            <a href="https://docs.google.com/document/d/11SqVD1z8I1lLszXc2DWmk7PwoCxTwM1iUWBhQbGWlMA/edit" target="_blank">Resume</a>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="aboutme.html">About Me</a>
+                <a href="blog.html">Blog</a>
+                <a href="https://docs.google.com/document/d/11SqVD1z8I1lLszXc2DWmk7PwoCxTwM1iUWBhQbGWlMA/edit" target="_blank">Resume</a>
+            </div>
         </div>
     </div>
 
@@ -291,6 +314,7 @@
 
 </body>
 </html>
+
 
 
 
