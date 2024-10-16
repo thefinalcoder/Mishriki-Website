@@ -6,24 +6,32 @@
     <meta name="description" content="Mishriki.org - Explore my blog, projects, and resume.">
     <meta name="keywords" content="Mishriki, Blog, Resume, Software Engineer, Developer">
     <meta name="author" content="Eli Mishriki">
+    <meta name="robots" content="index, follow">
+    <meta name="subject" content="Portfolio of Eli Mishriki, a software engineer. Explore projects, blogs, and resume.">
+    <meta name="og:title" content="Mishriki.org">
+    <meta name="og:description" content="Welcome to the personal website of Eli Mishriki, featuring blog posts, a resume, and project showcase.">
+    <meta name="og:image" content="your-image.jpg">
+    <meta name="og:type" content="website">
+    <meta name="og:url" content="https://mishriki.org">
+    <meta name="twitter:card" content="summary_large_image">
     <title>Welcome to Mishriki.org</title>
     <style>
         body {
-            background-color: #111; /* Dark background */
-            color: #fff; /* White text */
+            background-color: #111;
+            color: #fff;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-image: url('backrooms-abandoned-office.gif'); /* Background gif */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the background image */
-            background-attachment: fixed; /* Make the background fixed when scrolling */
+            background-image: url('backrooms-abandoned-office.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .header {
-            background-color: black; /* Black header */
-            color: #fff; /* White text for links */
+            background-color: black;
+            color: #fff;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,7 +41,7 @@
             width: 100%;
             box-sizing: border-box;
             transition: all 0.3s ease-in-out;
-            border-bottom: 2px solid #fff; /* White border */
+            border-bottom: 2px solid #fff;
             z-index: 1000;
         }
 
@@ -47,7 +55,7 @@
         }
 
         .header a {
-            color: #fff; /* White links */
+            color: #fff;
             text-decoration: none;
             font-size: 1.2em;
         }
@@ -68,24 +76,23 @@
 
         .content h1 {
             font-size: 4em;
-            color: #fff; /* White text */
+            color: #fff;
             margin-bottom: 10px;
             position: relative;
             text-transform: uppercase;
-            -webkit-text-stroke: 2px black; /* Black border around the text */
-
+            -webkit-text-stroke: 2px black;
         }
 
         .content .subtitle {
             font-size: 2em;
-            color: #fff; /* White text */
+            color: #fff;
             margin-top: 10px;
         }
 
         .content .bar {
             width: 50px;
             height: 2px;
-            background-color: #fff; /* White bar */
+            background-color: #fff;
             margin: 10px 0;
         }
 
@@ -95,12 +102,12 @@
         }
 
         .blog-post {
-            background-color: #111; /* Darker background */
-            color: #fff; /* White text */
+            background-color: #111;
+            color: #fff;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
-            border: 1px solid #fff; /* White border */
+            border: 1px solid #fff;
         }
 
         .blog-post h2 {
@@ -108,7 +115,7 @@
         }
 
         .blog-post a {
-            color: #fff; /* White blog post links */
+            color: #fff;
         }
 
         .blog-post p {
@@ -137,12 +144,12 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            color: #000; /* Black glitch effect */
+            color: #000;
             z-index: -1;
         }
 
         h1::after, .blog-post h2::after {
-            color: #fff; /* White glitch effect */
+            color: #fff;
             left: 2px;
         }
 
@@ -197,13 +204,61 @@
 
         /* Hover animations */
         a:hover {
-            color: #ddd; /* Slight color change */
+            color: #ddd;
             transition: color 0.3s ease;
+        }
+
+        /* Loader animation */
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 10px solid #fff;
+            border-top: 10px solid #111;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        body.loading .content {
+            display: none;
+        }
+
+        /* Light mode styles */
+        .light-mode {
+            background-color: #fff;
+            color: #111;
+        }
+
+        .light-mode .header {
+            background-color: #f1f1f1;
+            color: #111;
+        }
+
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
     </style>
 </head>
-<body>
+<body class="loading">
+
+    <div class="loader" id="loader"></div>
 
     <div class="header" id="header">
         <div class="title">mishriki.org</div>
@@ -218,7 +273,7 @@
         <h1 data-text="Welcome to Mishriki.org">Welcome to Mishriki.org</h1>
         <div class="bar"></div>
         <div class="subtitle">Check out my Blog</div>
-        <div class="blog-posts">
+        <div class="blog-posts fade-in">
             <div class="blog-post">
                 <h2 data-text="Blog Post 10/8/24"><a href="blog.html">Blog Post 10/8/24</a></h2>
                 <p>Hello World!</p>
@@ -226,11 +281,12 @@
         </div>
         <!-- Social Media Links -->
         <div class="social-links">
-            <a href="https://x.com/thefinalcoder" target="_blank"><img src="x-icon.png" alt="X"></a>
-            <a href="https://www.linkedin.com/in/elimishriki/" target="_blank"><img src="link-icon.png" alt="LinkedIn"></a>
-            <a href="https://www.instagram.com/elimishriki/" target="_blank"><img src="insta-icon.png" alt="Instagram"></a>
-            <a href="https://github.com/thefinalcoder" target="_blank"><img src="git-icon.png" alt="Github"></a>
+            <a href="https://x.com/thefinalcoder" target="_blank"><img src="x-icon.png" alt="Link to X profile"></a>
+            <a href="https://www.linkedin.com/in/elimishriki/" target="_blank"><img src="link-icon.png" alt="LinkedIn profile"></a>
+            <a href="https://www.instagram.com/elimishriki/" target="_blank"><img src="insta-icon.png" alt="Instagram profile"></a>
+            <a href="https://github.com/thefinalcoder" target="_blank"><img src="git-icon.png" alt="GitHub profile"></a>
         </div>
+        <button id="darkModeToggle">Toggle Dark Mode</button>
     </div>
 
     <div class="footer">
@@ -247,7 +303,31 @@
                 header.classList.remove('shrink');
             }
         });
+
+        // Dark Mode Toggle
+        const toggle = document.getElementById('darkModeToggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+
+        // Loader animation
+        window.addEventListener('load', function() {
+            document.body.classList.remove('loading');
+            document.getElementById('loader').style.display = 'none';
+        });
+
+        // Fade-in effect on scroll
+        const faders = document.querySelectorAll('.fade-in');
+        window.addEventListener('scroll', function() {
+            faders.forEach(fader => {
+                const rect = fader.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    fader.classList.add('visible');
+                }
+            });
+        });
     </script>
 
 </body>
 </html>
+
