@@ -15,6 +15,8 @@
     <meta name="og:url" content="https://mishriki.org">
     <meta name="twitter:card" content="summary_large_image">
     <title>Welcome to Mishriki.org</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body {
             background-color: #111;
@@ -231,17 +233,6 @@
             display: none;
         }
 
-        /* Light mode styles */
-        .light-mode {
-            background-color: #fff;
-            color: #111;
-        }
-
-        .light-mode .header {
-            background-color: #f1f1f1;
-            color: #111;
-        }
-
         /* Fade-in effect */
         .fade-in {
             opacity: 0;
@@ -286,7 +277,6 @@
             <a href="https://www.instagram.com/elimishriki/" target="_blank"><img src="insta-icon.png" alt="Instagram profile"></a>
             <a href="https://github.com/thefinalcoder" target="_blank"><img src="git-icon.png" alt="GitHub profile"></a>
         </div>
-        <button id="darkModeToggle">Toggle Dark Mode</button>
     </div>
 
     <div class="footer">
@@ -302,12 +292,6 @@
             } else {
                 header.classList.remove('shrink');
             }
-        });
-
-        // Dark Mode Toggle
-        const toggle = document.getElementById('darkModeToggle');
-        toggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
         });
 
         // Loader animation
@@ -330,4 +314,5 @@
 
 </body>
 </html>
+
 
