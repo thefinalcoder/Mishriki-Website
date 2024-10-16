@@ -57,9 +57,27 @@
             display: inline-block;
         }
 
+        /* Classic Hamburger Icon */
+        .header .dropbtn {
+            background-color: black;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .header .dropbtn .bar {
+            display: block;
+            width: 30px;
+            height: 4px;
+            margin: 5px 0;
+            background-color: white;
+            transition: 0.3s;
+        }
+
         .header .dropdown-content {
             display: none;
             position: absolute;
+            right: 0; /* Align the dropdown menu to the right */
             background-color: black;
             min-width: 160px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
@@ -80,10 +98,6 @@
 
         .header .dropdown:hover .dropdown-content {
             display: block;
-        }
-
-        .header .dropdown:hover .dropbtn {
-            background-color: #111;
         }
 
         .content {
@@ -262,7 +276,12 @@
     <div class="header" id="header">
         <div class="title">mishriki.org</div>
         <div class="dropdown">
-            <button class="dropbtn">Menu</button>
+            <!-- Classic Hamburger Icon -->
+            <button class="dropbtn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
             <div class="dropdown-content">
                 <a href="aboutme.html">About Me</a>
                 <a href="blog.html">Blog</a>
@@ -314,6 +333,7 @@
 
 </body>
 </html>
+
 
 
 
