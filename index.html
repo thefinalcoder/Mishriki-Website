@@ -233,18 +233,6 @@
             display: none;
         }
 
-        /* Fade-in effect */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
     </style>
 </head>
 <body class="loading">
@@ -300,16 +288,6 @@
             document.getElementById('loader').style.display = 'none';
         });
 
-        // Fade-in effect on scroll
-        const faders = document.querySelectorAll('.fade-in');
-        window.addEventListener('scroll', function() {
-            faders.forEach(fader => {
-                const rect = fader.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    fader.classList.add('visible');
-                }
-            });
-        });
     </script>
 
 </body>
