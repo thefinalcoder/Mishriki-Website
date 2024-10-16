@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mishriki.org - Explore my blog, projects, and resume.">
+    <meta name="keywords" content="Mishriki, Blog, Resume, Software Engineer, Developer">
+    <meta name="author" content="Eli Mishriki">
     <title>Welcome to Mishriki.org</title>
     <style>
         body {
@@ -46,7 +49,7 @@
         .header a {
             color: #fff; /* White links */
             text-decoration: none;
-            font-size: 1em;
+            font-size: 1.2em;
         }
 
         .header a:hover {
@@ -151,6 +154,53 @@
             animation: glitch 1.5s infinite;
         }
 
+        /* Mobile responsiveness */
+        @media only screen and (max-width: 768px) {
+            .content h1 {
+                font-size: 2.5em;
+            }
+
+            .content .subtitle {
+                font-size: 1.5em;
+            }
+
+            .header {
+                padding: 10px;
+            }
+
+            .header a {
+                font-size: 1em;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background-color: black;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Social media links */
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        /* Hover animations */
+        a:hover {
+            color: #ddd; /* Slight color change */
+            transition: color 0.3s ease;
+        }
+
     </style>
 </head>
 <body>
@@ -174,6 +224,15 @@
                 <p>Hello World!</p>
             </div>
         </div>
+        <!-- Social Media Links -->
+        <div class="social-links">
+            <a href="https://x.com/thefinalcoder" target="_blank"><img src="twitter-icon.png" alt="X"></a>
+            <a href="https://www.linkedin.com/in/elimishriki/" target="_blank"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Mishriki.org. All rights reserved.</p>
     </div>
 
     <script>
