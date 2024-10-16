@@ -77,7 +77,7 @@
         .header .dropdown-content {
             display: none;
             position: absolute;
-            right: 0; /* Align the dropdown menu to the right */
+            right: 0;
             background-color: black;
             min-width: 160px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
@@ -197,6 +197,50 @@
             animation: glitch 1.5s infinite;
         }
 
+        /* Timeline */
+        .timeline {
+            width: 80%;
+            margin: 50px auto;
+            padding: 10px;
+            position: relative;
+            border-left: 3px solid #fff;
+        }
+
+        .timeline-item {
+            margin: 20px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute;
+            left: -8px;
+            top: 10px;
+        }
+
+        .timeline-date {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content {
+            background-color: #111;
+            border: 1px solid #fff;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .timeline-content h3 {
+            margin-top: 0;
+        }
+
         /* Mobile responsiveness */
         @media only screen and (max-width: 768px) {
             .content h1 {
@@ -276,7 +320,6 @@
     <div class="header" id="header">
         <div class="title">mishriki.org</div>
         <div class="dropdown">
-            <!-- Classic Hamburger Icon -->
             <button class="dropbtn">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -298,6 +341,38 @@
             <div class="blog-post">
                 <h2 data-text="Blog Post 10/8/24"><a href="/blog/">Blog Post 10/8/24</a></h2>
                 <p>Hello World!</p>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2018</div>
+                <div class="timeline-content">
+                    <h3>Spain and Israel</h3>
+                    <p>The Mishriki Family traveled to Spain and Israel, exploring historic landmarks and experiencing the rich cultures of both countries.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2019</div>
+                <div class="timeline-content">
+                    <h3>Thailand and Hong Kong</h3>
+                    <p>In 2019, the family visited the vibrant cities of Thailand and Hong Kong, enjoying the local cuisine and breathtaking sights.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2021</div>
+                <div class="timeline-content">
+                    <h3>Louisiana</h3>
+                    <p>They explored the cultural richness and the jazz-filled streets of Louisiana in 2021.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2024</div>
+                <div class="timeline-content">
+                    <h3>Italy</h3>
+                    <p>The most recent trip in 2024 was to Italy, where the family immersed themselves in the history and beauty of the country.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -333,6 +408,7 @@
 
 </body>
 </html>
+
 
 
 
