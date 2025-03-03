@@ -3,23 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10/8/2024 Blog Posts</title>
+    <title>10/8/2024 - Hacker Blog</title>
     <style>
         body {
             background-color: black;
-            color: white;
-            font-family: 'Times New Roman', Times, serif;
+            color: #00ff00;
+            font-family: "Courier New", monospace;
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
         }
+        h1, h2, h3 {
+            border-left: 5px solid #00ff00;
+            padding-left: 10px;
+        }
+        p, li {
+            line-height: 1.6;
+        }
+        .terminal {
+            background-color: rgba(0, 255, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #00ff00;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #00ff00;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        embed {
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>10/8/2024 First Blog!</h1>
-    <p>Hello World!</p>
-
-    <h1>10/8/2024 Second Blog - QuickSort Analysis</h1>
+    <h1>10/8/2024 - First Blog</h1>
+    <div class="terminal">
+        <p><b>root@hacker_blog:~$</b> <span> Hello World!<span class="cursor"></span></span></p>
+    </div>
+    
+    <h1>10/8/2024 - QuickSort Analysis</h1>
     <p>Welcome back! Today, I’m diving into a key topic in computer science: sorting algorithms. More specifically, I’m analyzing QuickSort, a widely used divide-and-conquer sorting algorithm.</p>
     
     <h2>Why Sorting Matters</h2>
@@ -29,11 +58,13 @@
     <p>QuickSort is an efficient, comparison-based sorting algorithm developed by Tony Hoare in 1959. It employs a divide-and-conquer approach, where a pivot element is selected, and the array is partitioned into two subarrays. The process is then applied recursively.</p>
     
     <h3>Algorithm Breakdown:</h3>
-    <ol>
-        <li><b>Divide:</b> Select a pivot and partition the array into elements smaller and greater than the pivot.</li>
-        <li><b>Conquer:</b> Recursively apply QuickSort to the left and right subarrays.</li>
-        <li><b>Combine:</b> Once sorted, merge the partitions back together.</li>
-    </ol>
+    <div class="terminal">
+        <ol>
+            <li><b>Divide:</b> Select a pivot and partition the array into elements smaller and greater than the pivot.</li>
+            <li><b>Conquer:</b> Recursively apply QuickSort to the left and right subarrays.</li>
+            <li><b>Combine:</b> Once sorted, merge the partitions back together.</li>
+        </ol>
+    </div>
     
     <h2>Efficiency and Complexity</h2>
     <p>QuickSort’s efficiency largely depends on pivot selection. On average, it runs in O(n log n) time, making it faster than other comparison-based sorts like MergeSort for many use cases. However, in the worst case (when the pivot is always the smallest or largest element), it degrades to O(n²).</p>
