@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10/8/2024 First blog!</title>
+    <title>10/8/2024 Blog Posts</title>
     <style>
         body {
             background-color: black;
@@ -16,7 +16,42 @@
     </style>
 </head>
 <body>
-    <h1>10/8/2024 First blog!</h1>
+    <h1>10/8/2024 First Blog!</h1>
     <p>Hello World!</p>
+
+    <h1>10/8/2024 Second Blog - QuickSort Analysis</h1>
+    <p>Welcome back! Today, I’m diving into a key topic in computer science: sorting algorithms. More specifically, I’m analyzing QuickSort, a widely used divide-and-conquer sorting algorithm.</p>
+    
+    <h2>Why Sorting Matters</h2>
+    <p>Sorting algorithms play a fundamental role in computing. Efficient sorting leads to better performance in database indexing, search engine optimization, and even scientific computing. That’s why understanding the trade-offs between sorting algorithms is essential.</p>
+    
+    <h2>Understanding QuickSort</h2>
+    <p>QuickSort is an efficient, comparison-based sorting algorithm developed by Tony Hoare in 1959. It employs a divide-and-conquer approach, where a pivot element is selected, and the array is partitioned into two subarrays. The process is then applied recursively.</p>
+    
+    <h3>Algorithm Breakdown:</h3>
+    <ol>
+        <li><b>Divide:</b> Select a pivot and partition the array into elements smaller and greater than the pivot.</li>
+        <li><b>Conquer:</b> Recursively apply QuickSort to the left and right subarrays.</li>
+        <li><b>Combine:</b> Once sorted, merge the partitions back together.</li>
+    </ol>
+    
+    <h2>Efficiency and Complexity</h2>
+    <p>QuickSort’s efficiency largely depends on pivot selection. On average, it runs in O(n log n) time, making it faster than other comparison-based sorts like MergeSort for many use cases. However, in the worst case (when the pivot is always the smallest or largest element), it degrades to O(n²).</p>
+    
+    <h2>Best Use Cases</h2>
+    <ul>
+        <li>General-purpose sorting in Python, Java, and C++.</li>
+        <li>Optimized performance with random or partially sorted data.</li>
+        <li>In-place sorting requiring minimal extra space.</li>
+    </ul>
+    
+    <h2>Limitations</h2>
+    <p>QuickSort may not be the best choice when data is already nearly sorted. MergeSort, which has a stable O(n log n) runtime, can be more reliable in such cases.</p>
+    
+    <h2>Full Paper</h2>
+    <p>For a detailed analysis, including pseudo-code, proof of correctness, and performance analysis, check out my full paper below:</p>
+    <embed src="CS460_Midterm1_Eli_Mishriki.pdf" width="100%" height="600px" />
+    
+    <p>That’s it for today’s post! Let me know what you think about QuickSort, and feel free to share your favorite sorting algorithm!</p>
 </body>
 </html>
