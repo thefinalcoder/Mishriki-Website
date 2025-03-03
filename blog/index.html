@@ -7,38 +7,42 @@
     <style>
         body {
             background-color: black;
-            color: #00ff00;
+            color: white;
             font-family: "Courier New", monospace;
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
         }
         h1, h2, h3 {
-            border-left: 5px solid #00ff00;
+            border-left: 5px solid white;
             padding-left: 10px;
         }
         p, li {
             line-height: 1.6;
         }
         .terminal {
-            background-color: rgba(0, 255, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 5px;
-            border: 1px solid #00ff00;
+            border: 1px solid white;
         }
         .cursor {
             display: inline-block;
             width: 10px;
             height: 20px;
-            background-color: #00ff00;
+            background-color: white;
             animation: blink 0.8s infinite;
         }
         @keyframes blink {
             50% { opacity: 0; }
         }
         embed {
-            border: 2px solid #00ff00;
+            border: 2px solid white;
             border-radius: 5px;
+            width: 50%;
+            height: 800px;
+            display: block;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -48,7 +52,7 @@
         <p><b>root@hacker_blog:~$</b> <span> Hello World!<span class="cursor"></span></span></p>
     </div>
     
-    <h1>3/2/2025 - QuickSort Analysis</h1>
+    <h1>10/8/2024 - QuickSort Analysis</h1>
     <p>Welcome back! Today, I’m diving into a key topic in computer science: sorting algorithms. More specifically, I’m analyzing QuickSort, a widely used divide-and-conquer sorting algorithm.</p>
     
     <h2>Why Sorting Matters</h2>
@@ -81,7 +85,7 @@
     
     <h2>Full Paper</h2>
     <p>For a detailed analysis, including pseudo-code, proof of correctness, and performance analysis, check out my full paper below:</p>
-    <embed src="CS460_Midterm1_Eli_Mishriki.pdf" width="100%" height="600px" />
+    <embed src="CS460_Midterm1_Eli_Mishriki.pdf" />
     
     <p>That’s it for today’s post! Let me know what you think about QuickSort, and feel free to share your favorite sorting algorithm!</p>
 </body>
