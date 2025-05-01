@@ -6,8 +6,8 @@
     <title>Eli Mishriki</title>
     <style>
         body {
-            background-color: #111; /* Dark background */
-            color: #fff; /* White text */
+            background-color: #111;
+            color: #fff;
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
@@ -17,7 +17,7 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* Dark texture */
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
         }
 
         .content {
@@ -36,13 +36,12 @@
             width: 100%;
         }
 
-        /* Glitch effect applied to profile image */
         .profile img {
             width: 100%;
             max-width: 220px;
             height: auto;
             margin-right: 20px;
-            border: 2px solid #fff; /* White border */
+            border: 2px solid #fff;
             position: relative;
         }
 
@@ -68,36 +67,19 @@
         }
 
         .profile p {
-            font-size: 1.2em; /* Slightly larger font size */
-            text-align: left;
-            color: #fff; /* White text */
-        }
-
-        .profile .links {
-            margin-left: auto;
             font-size: 1.2em;
             text-align: left;
-        }
-
-        .profile .links a {
-            color: #fff; /* White links */
-            text-decoration: none;
-        }
-
-        .profile .links a:hover {
-            text-decoration: line-through;
+            color: #fff;
         }
 
         .quote {
             margin-top: 20px;
             font-style: italic;
-            font-size: 1.2em; /* Slightly larger font size */
+            font-size: 1.2em;
             text-align: center;
-            color: #fff; /* White text */
+            color: #fff;
         }
 
-        /* Remove the glitch effect from the quote */
-        
         @keyframes glitch {
             0% { transform: translate(0, 0); }
             10% { transform: translate(-2px, -2px); }
@@ -112,7 +94,6 @@
             100% { transform: translate(0, 0); }
         }
 
-        /* Media query for mobile screens */
         @media (max-width: 600px) {
             .profile {
                 flex-direction: column;
@@ -120,16 +101,12 @@
             }
 
             .profile img {
-                margin-right: 0; /* Remove right margin */
-                margin-bottom: 10px; /* Add bottom margin for spacing */
+                margin-right: 0;
+                margin-bottom: 10px;
             }
 
-            .profile p, .profile .links {
-                text-align: center; /* Center-align text */
-            }
-
-            .profile .links {
-                margin-left: 0; /* Remove margin to align links properly */
+            .profile p {
+                text-align: center;
             }
         }
     </style>
@@ -145,11 +122,6 @@
                 Occupation: Software Engineer<br>
                 Location: California<br>
             </p>
-            <div class="links">
-                <br>Links:<br>
-                <a href="https://www.linkedin.com/in/elimishriki/" target="_blank">LinkedIn</a><br>
-                <a href="https://github.com/thefinalcoder" target="_blank">Github</a>
-            </div>
         </div>
         
         <div class="quote" id="quote">
