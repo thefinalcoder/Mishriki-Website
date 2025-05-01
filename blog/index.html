@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>10/8/2024 - Hacker Blog</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hacker Blog</title>
   <style>
     /* Base Styles */
     body {
@@ -15,14 +15,17 @@
       box-sizing: border-box;
       line-height: 1.6;
     }
+
     h1, h2, h3 {
       border-left: 5px solid white;
       padding-left: 10px;
       margin-top: 1.2em;
     }
+
     p, li {
       line-height: 1.6;
     }
+
     .terminal {
       background-color: rgba(255, 255, 255, 0.1);
       padding: 15px;
@@ -30,6 +33,7 @@
       border: 1px solid white;
       margin: 20px 0;
     }
+
     .cursor {
       display: inline-block;
       width: 10px;
@@ -37,9 +41,11 @@
       background-color: white;
       animation: blink 0.8s infinite;
     }
+
     @keyframes blink {
       50% { opacity: 0; }
     }
+
     embed {
       border: 2px solid white;
       border-radius: 5px;
@@ -48,6 +54,7 @@
       display: block;
       margin: 20px auto;
     }
+
     pre {
       white-space: pre-wrap;
       word-wrap: break-word;
@@ -56,27 +63,51 @@
       border-radius: 5px;
       overflow-x: auto;
     }
+
     code {
       font-family: "Courier New", monospace;
     }
-    
+
+    /* Blog Post Styling */
+    .blog-post {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid white;
+      padding: 20px;
+      margin-bottom: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .blog-post header h1 {
+      margin-top: 0;
+      border-color: #00ffcc;
+    }
+
     /* Mobile Responsiveness */
     @media only screen and (max-width: 768px) {
       body {
         padding: 10px;
       }
+
       h1 {
         font-size: 1.8em;
       }
+
       h2 {
         font-size: 1.5em;
       }
+
       h3 {
         font-size: 1.3em;
       }
+
       embed {
         width: 90%;
         height: auto;
+      }
+
+      .blog-post {
+        padding: 15px;
       }
     }
   </style>
@@ -84,7 +115,7 @@
 <body>
   <main>
     <!-- First Blog Post -->
-    <article>
+    <article class="blog-post">
       <header>
         <h1>10/8/2024 - First Blog</h1>
       </header>
@@ -92,9 +123,9 @@
         <p><strong>root@hacker_blog:~$</strong> <span>Hello World!<span class="cursor"></span></span></p>
       </section>
     </article>
-    
+
     <!-- Second Blog Post: QuickSort Analysis -->
-    <article>
+    <article class="blog-post">
       <header>
         <h1>3/2/2025 - QuickSort Analysis</h1>
       </header>
@@ -147,4 +178,5 @@
   </main>
 </body>
 </html>
+
 
