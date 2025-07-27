@@ -5,41 +5,209 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hacker Blog</title>
   <style>
+    :root {
+      --bg-color: #111;
+      --text-color: #fff;
+      --accent-color: #000;
+      --neon-color: #0ff;
+      --glow-color: #f0f;
+      --terminal-green: #00ff41;
+      --transition-time: 0.3s;
+    }
+    
     /* Base Styles */
     body {
-      background-color: black;
-      color: white;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       font-family: "Courier New", monospace;
       margin: 0;
       padding: 20px;
       box-sizing: border-box;
       line-height: 1.6;
+      background-image: url('../backrooms-abandoned-office.gif');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    /* Particle effects */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--neon-color);
+      border-radius: 50%;
+      animation: float 6s infinite linear;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Matrix rain effect */
+    .matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .matrix-column {
+      position: absolute;
+      top: -100px;
+      color: var(--neon-color);
+      font-size: 14px;
+      font-family: 'Courier New', monospace;
+      animation: matrixFall linear infinite;
+    }
+    @keyframes matrixFall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    /* Header with navigation */
+    .header {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: var(--text-color);
+      padding: 20px;
+      margin: -20px -20px 20px -20px;
+      border-bottom: 2px solid var(--neon-color);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      position: relative;
+      z-index: 100;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      text-shadow: 0 0 10px var(--neon-color);
+      animation: pulse 2s infinite;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .header h1:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 20px var(--neon-color);
+    }
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px var(--neon-color); }
+      50% { text-shadow: 0 0 20px var(--neon-color), 0 0 30px var(--neon-color); }
+    }
+    .nav-link {
+      color: var(--text-color);
+      text-decoration: none;
+      margin-right: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .nav-link:hover {
+      color: var(--neon-color);
+      text-shadow: 0 0 10px var(--neon-color);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--neon-color);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Main content */
+    main {
+      position: relative;
+      z-index: 2;
     }
 
     h1, h2, h3 {
-      border-left: 5px solid white;
+      border-left: 5px solid var(--neon-color);
       padding-left: 10px;
       margin-top: 1.2em;
+      text-shadow: 0 0 10px var(--neon-color);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    h1:hover, h2:hover, h3:hover {
+      border-left-color: var(--glow-color);
+      text-shadow: 0 0 15px var(--glow-color);
+      transform: translateX(5px);
     }
 
     p, li {
       line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+    p:hover, li:hover {
+      text-shadow: 0 0 5px var(--neon-color);
     }
 
     .terminal {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(0, 0, 0, 0.8);
       padding: 15px;
       border-radius: 5px;
-      border: 1px solid white;
+      border: 1px solid var(--terminal-green);
       margin: 20px 0;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .terminal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    .terminal:hover::before {
+      left: 100%;
+    }
+    .terminal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 25px rgba(0, 255, 65, 0.5);
     }
 
     .cursor {
       display: inline-block;
       width: 10px;
       height: 20px;
-      background-color: white;
+      background-color: var(--terminal-green);
       animation: blink 0.8s infinite;
+      box-shadow: 0 0 10px var(--terminal-green);
     }
 
     @keyframes blink {
@@ -47,46 +215,118 @@
     }
 
     embed {
-      border: 2px solid white;
+      border: 2px solid var(--neon-color);
       border-radius: 5px;
       width: 50%;
       height: 800px;
       display: block;
       margin: 20px auto;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+    embed:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
     }
 
     pre {
       white-space: pre-wrap;
       word-wrap: break-word;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(0, 0, 0, 0.8);
       padding: 10px;
       border-radius: 5px;
       overflow-x: auto;
+      border: 1px solid var(--neon-color);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    pre:hover {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
     }
 
     code {
       font-family: "Courier New", monospace;
+      color: var(--terminal-green);
+      text-shadow: 0 0 5px var(--terminal-green);
     }
 
     /* Blog Post Styling */
     .blog-post {
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid white;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--neon-color);
       padding: 20px;
       margin-bottom: 40px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-post::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    .blog-post:hover::before {
+      left: 100%;
+    }
+    .blog-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+      border-color: var(--glow-color);
     }
 
     .blog-post header h1 {
       margin-top: 0;
-      border-color: #00ffcc;
+      border-color: var(--terminal-green);
+      animation: glitch 2s infinite;
+    }
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Cursor trail effect */
+    .cursor-trail {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: var(--neon-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      animation: fadeOut 1s forwards;
+    }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0);
+      }
     }
 
     /* Mobile Responsiveness */
     @media only screen and (max-width: 768px) {
       body {
         padding: 10px;
+      }
+
+      .header {
+        margin: -10px -10px 10px -10px;
+        padding: 15px;
+      }
+
+      .header h1 {
+        font-size: 1.8em;
       }
 
       h1 {
@@ -113,6 +353,21 @@
   </style>
 </head>
 <body>
+  <!-- Particle effects -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Matrix rain effect -->
+  <div class="matrix-rain" id="matrixRain"></div>
+
+  <div class="header">
+    <h1 id="blog-title">HACKER_BLOG.exe</h1>
+    <nav>
+      <a href="../" class="nav-link">HOME</a>
+      <a href="../aboutme/" class="nav-link">ABOUT</a>
+      <a href="https://docs.google.com/document/d/11SqVD1z8I1lLszXc2DWmk7PwoCxTwM1iUWBhQbGWlMA/edit" target="_blank" class="nav-link">RESUME</a>
+    </nav>
+  </div>
+
   <main>
     <!-- First Blog Post -->
     <article class="blog-post">
@@ -130,11 +385,11 @@
         <h1>3/2/2025 - QuickSort Analysis</h1>
       </header>
       <section>
-        <p>Welcome back! Today, I’m diving into a key topic in computer science: sorting algorithms. More specifically, I’m analyzing QuickSort, a widely used divide-and-conquer sorting algorithm.</p>
+        <p>Welcome back! Today, I'm diving into a key topic in computer science: sorting algorithms. More specifically, I'm analyzing QuickSort, a widely used divide-and-conquer sorting algorithm.</p>
       </section>
       <section>
         <h2>Why Sorting Matters</h2>
-        <p>Sorting algorithms play a fundamental role in computing. Efficient sorting leads to better performance in database indexing, search engine optimization, and even scientific computing. That’s why understanding the trade-offs between sorting algorithms is essential.</p>
+        <p>Sorting algorithms play a fundamental role in computing. Efficient sorting leads to better performance in database indexing, search engine optimization, and even scientific computing. That's why understanding the trade-offs between sorting algorithms is essential.</p>
       </section>
       <section>
         <h2>Understanding QuickSort</h2>
@@ -152,7 +407,7 @@
       </section>
       <section>
         <h2>Efficiency and Complexity</h2>
-        <p>QuickSort’s efficiency largely depends on pivot selection. On average, it runs in O(n log n) time, making it faster than other comparison-based sorts like MergeSort for many use cases. However, in the worst case (when the pivot is always the smallest or largest element), it degrades to O(n²).</p>
+        <p>QuickSort's efficiency largely depends on pivot selection. On average, it runs in O(n log n) time, making it faster than other comparison-based sorts like MergeSort for many use cases. However, in the worst case (when the pivot is always the smallest or largest element), it degrades to O(n²).</p>
       </section>
       <section>
         <h2>Best Use Cases</h2>
@@ -172,10 +427,120 @@
         <embed src="CS460_Midterm1_Eli_Mishriki.pdf" type="application/pdf">
       </section>
       <section>
-        <p>That’s it for today’s post! Let me know what you think about QuickSort, and feel free to share your favorite sorting algorithm!</p>
+        <p>That's it for today's post! Let me know what you think about QuickSort, and feel free to share your favorite sorting algorithm!</p>
       </section>
     </article>
   </main>
+
+  <script>
+    // Particle effects
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // Matrix rain effect
+    function createMatrixRain() {
+      const matrixContainer = document.getElementById('matrixRain');
+      const columns = Math.floor(window.innerWidth / 20);
+      const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+      
+      for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = (i * 20) + 'px';
+        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        column.style.animationDelay = Math.random() * 2 + 's';
+        
+        // Create random characters
+        for (let j = 0; j < 20; j++) {
+          const char = document.createElement('div');
+          char.textContent = chars[Math.floor(Math.random() * chars.length)];
+          char.style.opacity = Math.random();
+          column.appendChild(char);
+        }
+        
+        matrixContainer.appendChild(column);
+      }
+    }
+    
+    // Cursor trail effect
+    function createCursorTrail(e) {
+      const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
+      trail.style.left = e.clientX + 'px';
+      trail.style.top = e.clientY + 'px';
+      document.body.appendChild(trail);
+      
+      setTimeout(() => {
+        trail.remove();
+      }, 1000);
+    }
+    
+    // Interactive title effect
+    function addTitleInteraction() {
+      const title = document.getElementById('blog-title');
+      title.addEventListener('click', function() {
+        this.style.animation = 'none';
+        this.offsetHeight; // Trigger reflow
+        this.style.animation = 'glitch 0.5s infinite';
+        setTimeout(() => {
+          this.style.animation = 'pulse 2s infinite';
+        }, 500);
+      });
+    }
+    
+    // Add glitch effects to headings
+    function addHeadingEffects() {
+      const headings = document.querySelectorAll('h1, h2, h3');
+      headings.forEach(heading => {
+        heading.addEventListener('click', function() {
+          this.style.animation = 'glitch 0.3s infinite';
+          setTimeout(() => {
+            this.style.animation = '';
+          }, 300);
+        });
+      });
+    }
+    
+    // Initialize all effects
+    window.addEventListener('load', function() {
+      createParticles();
+      createMatrixRain();
+      addTitleInteraction();
+      addHeadingEffects();
+      
+      // Add cursor trail on mouse move
+      let trailTimeout;
+      document.addEventListener('mousemove', (e) => {
+        clearTimeout(trailTimeout);
+        trailTimeout = setTimeout(() => {
+          createCursorTrail(e);
+        }, 50);
+      });
+    });
+    
+    // Add some random glitch effects
+    setInterval(() => {
+      const elements = document.querySelectorAll('h1, h2, h3, .blog-post');
+      const randomElement = elements[Math.floor(Math.random() * elements.length)];
+      if (randomElement) {
+        randomElement.style.textShadow = '0 0 20px var(--neon-color)';
+        setTimeout(() => {
+          randomElement.style.textShadow = '';
+        }, 200);
+      }
+    }, 4000);
+  </script>
 </body>
 </html>
 

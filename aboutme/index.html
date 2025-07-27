@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eli Mishriki</title>
     <style>
+        :root {
+            --bg-color: #111;
+            --text-color: #fff;
+            --accent-color: #000;
+            --neon-color: #0ff;
+            --glow-color: #f0f;
+            --terminal-green: #00ff41;
+            --transition-time: 0.3s;
+        }
+        
         body {
-            background-color: #111;
-            color: #fff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
@@ -17,7 +27,123 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+            background-image: url('../backrooms-abandoned-office.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Particle effects */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-color);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Matrix rain effect */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .matrix-column {
+            position: absolute;
+            top: -100px;
+            color: var(--neon-color);
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            animation: matrixFall linear infinite;
+        }
+        @keyframes matrixFall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Header with navigation */
+        .header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: var(--text-color);
+            padding: 20px;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 2px solid var(--neon-color);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            position: relative;
+            z-index: 100;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px var(--neon-color);
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .header h1:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px var(--neon-color);
+        }
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 10px var(--neon-color); }
+            50% { text-shadow: 0 0 20px var(--neon-color), 0 0 30px var(--neon-color); }
+        }
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link:hover {
+            color: var(--neon-color);
+            text-shadow: 0 0 10px var(--neon-color);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .content {
@@ -27,6 +153,8 @@
             text-align: left;
             width: 100%;
             max-width: 800px;
+            position: relative;
+            z-index: 2;
         }
 
         .profile {
@@ -34,6 +162,33 @@
             align-items: flex-start;
             margin-bottom: 20px;
             width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--neon-color);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        .profile:hover::before {
+            left: 100%;
+        }
+        .profile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
+            border-color: var(--glow-color);
         }
 
         .profile img {
@@ -41,8 +196,17 @@
             max-width: 220px;
             height: auto;
             margin-right: 20px;
-            border: 2px solid #fff;
+            border: 3px solid var(--neon-color);
+            border-radius: 10px;
             position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            cursor: pointer;
+        }
+        .profile img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+            border-color: var(--glow-color);
         }
 
         .profile img::before, .profile img::after {
@@ -52,7 +216,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('awesome.jpg') no-repeat center center / cover;
+            background: url('profilePic.jpg') no-repeat center center / cover;
             overflow: hidden;
             z-index: -1;
         }
@@ -69,7 +233,36 @@
         .profile p {
             font-size: 1.2em;
             text-align: left;
-            color: #fff;
+            color: var(--text-color);
+            line-height: 1.8;
+            text-shadow: 0 0 5px var(--neon-color);
+            transition: all 0.3s ease;
+        }
+        .profile p:hover {
+            text-shadow: 0 0 10px var(--neon-color);
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .info-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .info-line:hover {
+            transform: translateX(10px);
+            text-shadow: 0 0 10px var(--neon-color);
+        }
+
+        .label {
+            color: var(--terminal-green);
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--terminal-green);
         }
 
         .quote {
@@ -77,7 +270,34 @@
             font-style: italic;
             font-size: 1.2em;
             text-align: center;
-            color: #fff;
+            color: var(--text-color);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--glow-color);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        .quote:hover::before {
+            left: 100%;
+        }
+        .quote:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.5);
+            border-color: var(--neon-color);
         }
 
         @keyframes glitch {
@@ -94,34 +314,92 @@
             100% { transform: translate(0, 0); }
         }
 
+        /* Cursor trail effect */
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--neon-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fadeOut 1s forwards;
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
         @media (max-width: 600px) {
             .profile {
                 flex-direction: column;
                 align-items: center;
+                padding: 20px;
             }
 
             .profile img {
                 margin-right: 0;
-                margin-bottom: 10px;
+                margin-bottom: 15px;
             }
 
             .profile p {
                 text-align: center;
             }
+
+            .header {
+                margin: -20px -20px 20px -20px;
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Particle effects -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Matrix rain effect -->
+    <div class="matrix-rain" id="matrixRain"></div>
+
+    <div class="header">
+        <h1 id="page-title">ELI_MISHRIKI.exe</h1>
+        <nav>
+            <a href="../" class="nav-link">HOME</a>
+            <a href="../blog/" class="nav-link">BLOG</a>
+            <a href="https://docs.google.com/document/d/11SqVD1z8I1lLszXc2DWmk7PwoCxTwM1iUWBhQbGWlMA/edit" target="_blank" class="nav-link">RESUME</a>
+        </nav>
+    </div>
 
     <div class="content">
         <div class="profile">
-            <img src="profilePic.jpg" alt="Eli Mishriki">
-            <p>
-                Eli Mishriki<br>
-                aka: mesh25<br>
-                Occupation: Software Engineer<br>
-                Location: California<br>
-            </p>
+            <img src="profilePic.jpg" alt="Eli Mishriki" id="profile-img">
+            <div class="profile-info">
+                <div class="info-line">
+                    <span class="label">NAME:</span>
+                    <span>Eli Mishriki</span>
+                </div>
+                <div class="info-line">
+                    <span class="label">ALIAS:</span>
+                    <span>mesh25</span>
+                </div>
+                <div class="info-line">
+                    <span class="label">OCCUPATION:</span>
+                    <span>Software Engineer</span>
+                </div>
+                <div class="info-line">
+                    <span class="label">LOCATION:</span>
+                    <span>California</span>
+                </div>
+                <div class="info-line">
+                    <span class="label">STATUS:</span>
+                    <span>ONLINE</span>
+                </div>
+            </div>
         </div>
         
         <div class="quote" id="quote">
@@ -140,11 +418,116 @@
             "Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. Love does not delight in evil but rejoices with the truth. It always protects, always trusts, always hopes, always perseveres. 1 Corinthians 13:4-7"
         ];
 
-        const randomVerse = verses[Math.floor(Math.random() * verses.length)];
-        const quoteElement = document.getElementById('quote');
-        quoteElement.innerText = randomVerse;
-
+        // Particle effects
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Matrix rain effect
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrixRain');
+            const columns = Math.floor(window.innerWidth / 20);
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = (i * 20) + 'px';
+                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Create random characters
+                for (let j = 0; j < 20; j++) {
+                    const char = document.createElement('div');
+                    char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                    char.style.opacity = Math.random();
+                    column.appendChild(char);
+                }
+                
+                matrixContainer.appendChild(column);
+            }
+        }
+        
+        // Cursor trail effect
+        function createCursorTrail(e) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
+        
+        // Interactive title effect
+        function addTitleInteraction() {
+            const title = document.getElementById('page-title');
+            title.addEventListener('click', function() {
+                this.style.animation = 'none';
+                this.offsetHeight; // Trigger reflow
+                this.style.animation = 'glitch 0.5s infinite';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 2s infinite';
+                }, 500);
+            });
+        }
+        
+        // Profile image interaction
+        function addProfileInteraction() {
+            const profileImg = document.getElementById('profile-img');
+            profileImg.addEventListener('click', function() {
+                this.style.animation = 'glitch 0.3s infinite';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 300);
+            });
+        }
+        
+        // Initialize all effects
+        window.addEventListener('load', function() {
+            createParticles();
+            createMatrixRain();
+            addTitleInteraction();
+            addProfileInteraction();
+            
+            // Add cursor trail on mouse move
+            let trailTimeout;
+            document.addEventListener('mousemove', (e) => {
+                clearTimeout(trailTimeout);
+                trailTimeout = setTimeout(() => {
+                    createCursorTrail(e);
+                }, 50);
+            });
+            
+            // Set random verse
+            const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+            const quoteElement = document.getElementById('quote');
+            quoteElement.innerText = randomVerse;
+        });
+        
+        // Add some random glitch effects
+        setInterval(() => {
+            const elements = document.querySelectorAll('h1, .profile, .quote');
+            const randomElement = elements[Math.floor(Math.random() * elements.length)];
+            if (randomElement) {
+                randomElement.style.textShadow = '0 0 20px var(--neon-color)';
+                setTimeout(() => {
+                    randomElement.style.textShadow = '';
+                }, 200);
+            }
+        }, 4000);
     </script>
-
 </body>
 </html>
