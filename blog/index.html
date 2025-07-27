@@ -6,12 +6,12 @@
   <title>Hacker Blog</title>
   <style>
     :root {
-      --bg-color: #111;
+      --bg-color: #000;
       --text-color: #fff;
       --accent-color: #000;
-      --neon-color: #0ff;
-      --glow-color: #f0f;
-      --terminal-green: #00ff41;
+      --neon-color: #fff;
+      --glow-color: #fff;
+      --terminal-green: #fff;
       --transition-time: 0.3s;
     }
     
@@ -98,7 +98,7 @@
       margin: -20px -20px 20px -20px;
       border-bottom: 2px solid var(--neon-color);
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
       position: relative;
       z-index: 100;
     }
@@ -178,7 +178,7 @@
       border: 1px solid var(--terminal-green);
       margin: 20px 0;
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -190,7 +190,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
       transition: left 0.5s;
     }
     .terminal:hover::before {
@@ -198,7 +198,7 @@
     }
     .terminal:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 25px rgba(0, 255, 65, 0.5);
+      box-shadow: 0 5px 25px rgba(255, 255, 255, 0.5);
     }
 
     .cursor {
@@ -222,11 +222,11 @@
       display: block;
       margin: 20px auto;
       transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
     embed:hover {
       transform: scale(1.02);
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
     }
 
     pre {
@@ -237,11 +237,11 @@
       border-radius: 5px;
       overflow-x: auto;
       border: 1px solid var(--neon-color);
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
     }
     pre:hover {
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
     code {
@@ -257,7 +257,7 @@
       padding: 20px;
       margin-bottom: 40px;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
       position: relative;
@@ -270,7 +270,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
       transition: left 0.5s;
     }
     .blog-post:hover::before {
@@ -278,7 +278,7 @@
     }
     .blog-post:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
       border-color: var(--glow-color);
     }
 
@@ -448,7 +448,7 @@
       }
     }
     
-    // Matrix rain effect
+    // Matrix rain effect - slower animation
     function createMatrixRain() {
       const matrixContainer = document.getElementById('matrixRain');
       const columns = Math.floor(window.innerWidth / 20);
@@ -458,7 +458,7 @@
         const column = document.createElement('div');
         column.className = 'matrix-column';
         column.style.left = (i * 20) + 'px';
-        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        column.style.animationDuration = (Math.random() * 6 + 4) + 's'; // Slower animation
         column.style.animationDelay = Math.random() * 2 + 's';
         
         // Create random characters

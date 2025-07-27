@@ -18,11 +18,11 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     :root {
-      --bg-color: #111;
+      --bg-color: #000;
       --text-color: #fff;
       --accent-color: #000;
-      --neon-color: #0ff;
-      --glow-color: #f0f;
+      --neon-color: #fff;
+      --glow-color: #fff;
       --transition-time: 0.3s;
     }
     *, *::before, *::after {
@@ -110,7 +110,7 @@
       transition: padding var(--transition-time) ease-in-out;
       z-index: 1000;
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
     header.shrink {
       padding: 10px;
@@ -139,7 +139,6 @@
       cursor: pointer;
       outline: none;
       padding: 0;
-      transition: transform 0.3s ease;
     }
     .dropbtn:hover {
       transform: scale(1.1);
@@ -183,7 +182,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: left 0.5s;
     }
     .dropdown-content a:hover::before {
@@ -198,17 +197,6 @@
     .dropdown:hover .dropdown-content,
     .dropdown:focus-within .dropdown-content {
       display: block;
-      animation: slideDown 0.3s ease;
-    }
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
     
     /* Main content */
@@ -286,75 +274,6 @@
       50% { color: var(--neon-color); }
     }
     
-    /* Blog posts */
-    .blog-posts {
-      width: 80%;
-      margin: 20px auto;
-    }
-    .blog-post {
-      background-color: rgba(17, 17, 17, 0.8);
-      color: var(--text-color);
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: 1px solid var(--text-color);
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      position: relative;
-      overflow: hidden;
-    }
-    .blog-post::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-      transition: left 0.5s;
-    }
-    .blog-post:hover::before {
-      left: 100%;
-    }
-    .blog-post:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
-      border-color: var(--neon-color);
-    }
-    .blog-post h2 {
-      margin-top: 0;
-      position: relative;
-    }
-    .blog-post h2::before, .blog-post h2::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
-    }
-    .blog-post h2::before {
-      color: var(--accent-color);
-      animation: glitch 1.5s infinite;
-    }
-    .blog-post h2::after {
-      color: var(--text-color);
-      left: 2px;
-      animation: glitch 1.5s infinite;
-    }
-    .blog-post a {
-      color: var(--text-color);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .blog-post a:hover,
-    .blog-post a:focus {
-      color: var(--neon-color);
-      text-shadow: 0 0 10px var(--neon-color);
-    }
-    
     /* Footer */
     footer {
       padding: 20px;
@@ -366,7 +285,7 @@
       width: 100%;
       backdrop-filter: blur(10px);
       border-top: 2px solid var(--text-color);
-      box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
     .social-links {
       margin-top: 10px;
@@ -489,14 +408,6 @@
     <h1 data-text="Welcome to Mishriki.org">Welcome to Mishriki.org</h1>
     <div class="bar"></div>
     <div class="subtitle">Check out my Blog</div>
-    <section class="blog-posts fade-in">
-      <article class="blog-post">
-        <h2 data-text="Blog Post 10/8/24">
-          <a href="/blog/">Blog Post 10/8/24</a>
-        </h2>
-        <p>Hello World!</p>
-      </article>
-    </section>
   </main>
   
   <footer>
@@ -539,7 +450,7 @@
       }
     }
     
-    // Matrix rain effect
+    // Matrix rain effect - slower animation
     function createMatrixRain() {
       const matrixContainer = document.getElementById('matrixRain');
       const columns = Math.floor(window.innerWidth / 20);
@@ -549,7 +460,7 @@
         const column = document.createElement('div');
         column.className = 'matrix-column';
         column.style.left = (i * 20) + 'px';
-        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        column.style.animationDuration = (Math.random() * 6 + 4) + 's'; // Slower animation
         column.style.animationDelay = Math.random() * 2 + 's';
         
         // Create random characters
@@ -590,24 +501,11 @@
       });
     }
     
-    // Parallax effect for blog posts
-    function addParallaxEffect() {
-      const blogPosts = document.querySelectorAll('.blog-post');
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        blogPosts.forEach((post, index) => {
-          const speed = 0.5 + (index * 0.1);
-          post.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-      });
-    }
-    
     // Initialize all effects
     window.addEventListener('load', function() {
       createParticles();
       createMatrixRain();
       addTitleInteraction();
-      addParallaxEffect();
       
       // Add cursor trail on mouse move
       let trailTimeout;
@@ -621,7 +519,7 @@
     
     // Add some random glitch effects
     setInterval(() => {
-      const elements = document.querySelectorAll('h1, h2, .subtitle');
+      const elements = document.querySelectorAll('h1, .subtitle');
       const randomElement = elements[Math.floor(Math.random() * elements.length)];
       if (randomElement) {
         randomElement.style.textShadow = '0 0 20px var(--neon-color)';
