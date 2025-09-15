@@ -1,0 +1,179 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+
+export default function ParticleSignature() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sceneRef = useRef<THREE.Scene>();
+  const rendererRef = useRef<THREE.WebGLRenderer>();
+  const particlesRef = useRef<THREE.Points>();
+  const animationRef = useRef<number>();
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    const canvas = canvasRef.current;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 400 / 200, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    
+    sceneRef.current = scene;
+    rendererRef.current = renderer;
+
+    renderer.setSize(400, 200);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    // Create particles
+    const particleCount = 1000;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const velocities = new Float32Array(particleCount * 3);
+    
+    // Initialize particles in random positions
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+      
+      velocities[i * 3] = (Math.random() - 0.5) * 0.02;
+      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.02;
+      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.02;
+    }
+    
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    
+    const material = new THREE.PointsMaterial({
+      color: 0x00ff95,
+      size: 0.1,
+      transparent: true,
+      opacity: 0.8,
+    });
+    
+    const particles = new THREE.Points(geometry, material);
+    particlesRef.current = particles;
+    scene.add(particles);
+    
+    camera.position.z = 15;
+    
+    let time = 0;
+    let signaturePhase = 0; // 0: random, 1: forming, 2: formed, 3: dispersing
+    
+    // Animation loop
+    const animate = () => {
+      animationRef.current = requestAnimationFrame(animate);
+      
+      time += 0.01;
+      
+      const positions = particles.geometry.attributes.position.array as Float32Array;
+      
+      // Form signature every 12 seconds
+      if (Math.floor(time / 12) !== Math.floor((time - 0.01) / 12)) {
+        signaturePhase = 1; // Start forming
+        setTimeout(() => {
+          signaturePhase = 2; // Formed
+          setTimeout(() => {
+            signaturePhase = 3; // Start dispersing
+            setTimeout(() => {
+              signaturePhase = 0; // Back to random
+            }, 2000);
+          }, 3000);
+        }, 2000);
+      }
+      
+      for (let i = 0; i < particleCount; i++) {
+        const i3 = i * 3;
+        
+        if (signaturePhase === 0) {
+          // Random movement
+          positions[i3] += velocities[i3];
+          positions[i3 + 1] += velocities[i3 + 1];
+          positions[i3 + 2] += velocities[i3 + 2];
+          
+          // Wrap around
+          if (positions[i3] > 10) positions[i3] = -10;
+          if (positions[i3] < -10) positions[i3] = 10;
+          if (positions[i3 + 1] > 5) positions[i3 + 1] = -5;
+          if (positions[i3 + 1] < -5) positions[i3 + 1] = 5;
+        } else if (signaturePhase === 1) {
+          // Forming signature
+          const targetX = Math.sin(i / particleCount * Math.PI * 2) * 3;
+          const targetY = Math.cos(i / particleCount * Math.PI * 2) * 2;
+          
+          positions[i3] += (targetX - positions[i3]) * 0.05;
+          positions[i3 + 1] += (targetY - positions[i3 + 1]) * 0.05;
+        } else if (signaturePhase === 2) {
+          // Form "ELI" pattern
+          const letterIndex = Math.floor(i / (particleCount / 3));
+          let targetX = 0, targetY = 0;
+          
+          if (letterIndex === 0) { // E
+            const col = Math.floor((i % (particleCount / 3)) / 20);
+            const row = (i % (particleCount / 3)) % 20;
+            targetX = -4 + col * 0.5;
+            targetY = 2 - row * 0.2;
+          } else if (letterIndex === 1) { // L
+            const col = Math.floor((i % (particleCount / 3)) / 20);
+            const row = (i % (particleCount / 3)) % 20;
+            targetX = -1 + col * 0.5;
+            targetY = 2 - row * 0.2;
+          } else { // I
+            const col = Math.floor((i % (particleCount / 3)) / 20);
+            const row = (i % (particleCount / 3)) % 20;
+            targetX = 2 + col * 0.5;
+            targetY = 2 - row * 0.2;
+          }
+          
+          positions[i3] += (targetX - positions[i3]) * 0.1;
+          positions[i3 + 1] += (targetY - positions[i3 + 1]) * 0.1;
+        } else if (signaturePhase === 3) {
+          // Dispersing
+          positions[i3] += velocities[i3] * 2;
+          positions[i3 + 1] += velocities[i3 + 1] * 2;
+          positions[i3 + 2] += velocities[i3 + 2] * 2;
+        }
+      }
+      
+      particles.geometry.attributes.position.needsUpdate = true;
+      particles.rotation.y = time * 0.1;
+      
+      renderer.render(scene, camera);
+    };
+    
+    animate();
+    
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      renderer.dispose();
+    };
+  }, []);
+
+  return (
+    <section className="py-16 px-6">
+      <div className="max-w-4xl mx-auto text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-mono font-bold text-matrix mb-8"
+        >
+          PARTICLE SIGNATURE
+        </motion.h2>
+        
+        <div className="flex justify-center">
+          <canvas
+            ref={canvasRef}
+            className="border border-matrix/30 rounded-lg"
+            style={{ width: '400px', height: '200px' }}
+          />
+        </div>
+        
+        <p className="text-accent font-mono text-sm mt-4">
+          particles form signature every 12s
+        </p>
+      </div>
+    </section>
+  );
+}
