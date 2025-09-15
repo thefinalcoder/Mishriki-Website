@@ -6,8 +6,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/mishriki-redesign' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/mishriki-redesign' : '',
+  // Remove basePath and assetPrefix for custom domain
+  // assetPrefix: process.env.NODE_ENV === 'production' ? '/mishriki-redesign' : '',
+  // basePath: process.env.NODE_ENV === 'production' ? '/mishriki-redesign' : '',
 };
 
 export default nextConfig;
