@@ -3,23 +3,22 @@
 import { motion } from 'framer-motion';
 
 const nowItems = [
-  'security engineering @ company',
-  'building tools for developers',
-  'exploring web3 protocols',
-  'contributing to open source',
+  'finishing my degree at SDSU (graduating December 2026)',
+  'Software Engineer at VLI',
+  'TA for CS 596 Wireless Security and Cyber Security Tutor',
 ];
 
 const nextItems = [
-  'exploring GPU shaders',
-  'writing about systems design',
-  'building a new framework',
-  'researching AI safety',
+  'Systems Engineer at LPL Financial',
+  'Working on a start up',
+  'Possibly get an MBA',
+  'Enjoy life',
 ];
 
 export default function NowNext() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 px-4 md:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

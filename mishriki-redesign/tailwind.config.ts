@@ -17,6 +17,15 @@ const config: Config = {
         accent: '#9ae6b4',
         glow: '#b9ffd9',
       },
+      fontSize: {
+        'clamp-sm': 'clamp(0.875rem, 2vw, 1rem)',
+        'clamp-base': 'clamp(1rem, 2.5vw, 1.125rem)',
+        'clamp-lg': 'clamp(1.125rem, 3vw, 1.25rem)',
+        'clamp-xl': 'clamp(1.25rem, 4vw, 1.5rem)',
+        'clamp-2xl': 'clamp(1.5rem, 5vw, 2rem)',
+        'clamp-3xl': 'clamp(2rem, 6vw, 3rem)',
+        'clamp-4xl': 'clamp(2.5rem, 8vw, 4rem)',
+      },
       fontFamily: {
         mono: ['JetBrains Mono', 'monospace'],
         sans: ['Inter', 'sans-serif'],
