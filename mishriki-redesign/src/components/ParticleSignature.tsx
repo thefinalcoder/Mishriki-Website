@@ -1,14 +1,15 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import * as THREE from 'three';
 
 export default function ParticleSignature() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const sceneRef = useRef<THREE.Scene>();
-  const rendererRef = useRef<THREE.WebGLRenderer>();
-  const particlesRef = useRef<THREE.Points>();
-  const animationRef = useRef<number>();
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const particlesRef = useRef<THREE.Points | null>(null);
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!canvasRef.current) return;

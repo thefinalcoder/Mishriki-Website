@@ -15,9 +15,9 @@ export default function PerformanceOptimizer() {
     };
 
     const handleBatteryChange = () => {
-      // @ts-ignore - Battery API is experimental
-      if (navigator.getBattery) {
-        navigator.getBattery().then((battery: any) => {
+      if ('getBattery' in navigator) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (navigator as any).getBattery().then((battery: any) => {
           if (battery.charging === false && battery.level < 0.2) {
             // Reduce performance on low battery
             document.body.classList.add('low-power-mode');

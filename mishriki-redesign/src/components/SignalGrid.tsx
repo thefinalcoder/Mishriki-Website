@@ -99,7 +99,9 @@ export default function SignalGrid() {
               <div className="relative aspect-square bg-ink-1 border border-matrix/20 rounded-lg overflow-hidden">
                 {/* Shader Canvas */}
                 <canvas
-                  ref={(el) => (canvasRefs.current[project.id] = el)}
+                  ref={(el) => {
+                    canvasRefs.current[project.id] = el;
+                  }}
                   width={400}
                   height={400}
                   className="w-full h-full"
