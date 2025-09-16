@@ -68,8 +68,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="font-mono font-bold text-glow mb-8"
-          style={{ fontSize: 'clamp(2.25rem, 6vw, 4.5rem)' }}
+          className="text-6xl md:text-8xl font-mono font-bold text-glow mb-8"
         >
           <span className="inline-block">
             {displayText}
@@ -98,9 +97,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2.5 }}
-          className="text-lg md:text-xl text-accent font-mono mt-8 whitespace-nowrap"
+          className="text-xl md:text-2xl text-accent font-mono mt-8"
         >
-          security • networking • AI • software
+          systems • security • networks • shaders
         </motion.p>
 
         {/* Interactive Elements */}

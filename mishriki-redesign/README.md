@@ -2,68 +2,47 @@
 
 A modern, interactive personal website with a Matrix-inspired aesthetic built with Next.js, Three.js, and Framer Motion.
 
-## ✨ Features
+## Features
 
-### 🧭 **Modern Navigation**
-- **Spacious responsive top bar** with proper spacing (24-32px gaps)
-- **Desktop**: Full navigation with neon underline animations
-- **Mobile**: Pills layout with "•••" overflow menu (no hamburger)
-- **Glass sticky bar** with backdrop-blur-xl and 90% opacity on scroll
-- **Fully keyboard accessible** (Tab/Enter/Escape)
+### 🎨 Visual Design
+- **Matrix Rain Effect**: Full-screen WebGL canvas with parallax layers and depth of field
+- **Monochrome Palette**: Deep blacks with Matrix green accents
+- **CRT Effects**: Subtle scanlines and vignette for cinema feel
+- **Typography**: JetBrains Mono for code, Inter for UI
 
-### 🎨 **Matrix Aesthetic**
-- **Dual-layer Matrix rain** with WebGL Three.js (parallax + near-field streaks)
-- **CRT effects** with scanlines and vignette
-- **Monochrome palette** with Matrix green accents
-- **Typography**: JetBrains Mono + Inter fonts
-- **Responsive typography** using clamp() for fluid scaling
+### 🧭 Navigation
+- **Modern Glass Nav**: Always-visible navigation with backdrop blur
+- **Neon Underlines**: Animated Matrix green underlines on hover
+- **Mobile Responsive**: Collapsible menu for mobile devices
+- **Keyboard Accessible**: Full keyboard navigation support
 
-### 🏠 **Homepage Sections**
-1. **Hero**: "WELCOME TO MISHRIKI.ORG" with typewriter effect
-2. **Matrix Playground**: Interactive panels replacing empty project grid
-   - **Glyph Mapper**: Map keys to katakana/coptic glyphs
-   - **Code-Poems**: Cycling one-liners with typewriter effect
-   - **Packet Stream Viz**: Network packet visualization
+### 🏠 Homepage Modules
+1. **Hero Section**: Typewriter effect with interactive cursor trail
+2. **Signal Grid**: 3×2 project showcase with shader thumbnails
 3. **Feed Ticker**: Horizontal marquee with real phrases
-4. **Terminal Pulse**: Live console with fixed ASCII art header
-5. **Particle Signature**: Particles forming "ELI" every 12s
-6. **Now/Next**: Current and future projects/plans
+4. **Terminal Pulse**: Live mini console with cycling snippets
+5. **Particle Signature**: Particles forming "ELI" every 12 seconds
+6. **Now/Next**: Minimalist cards with current and future projects
 
-### 📖 **Coptic Verses Page** (`/verses`)
-- **Rotating Bible verses** in Coptic script
-- **English translation toggle**
-- **Noto Sans Coptic font** for proper rendering
-- **Auto-play with pause on hover**
-- **Copy functionality** for verses
+### ⚡ Performance & Accessibility
+- **Reduced Motion Support**: Respects user preferences
+- **Battery Optimization**: Reduces effects on low battery
+- **Intersection Observer**: Lazy loading for better performance
+- **WCAG AA Compliant**: High contrast and keyboard navigation
+- **GPU Optimized**: 60fps canvas animations with fallbacks
 
-### ⚡ **Performance & Accessibility**
-- **Reduced motion support** with static fallbacks
-- **60fps canvas** (30fps on battery saver)
-- **WCAG AA compliant** with visible focus rings
-- **Keyboard navigation** for all interactive elements
-- **GPU optimized** with proper throttling
-
-## 🛠 **Tech Stack**
+## Tech Stack
 
 - **Framework**: Next.js 15 with App Router
 - **Styling**: Tailwind CSS with custom Matrix theme
 - **Animation**: Framer Motion + GSAP
 - **3D Graphics**: Three.js for WebGL effects
 - **Icons**: Lucide React
-- **Fonts**: JetBrains Mono + Inter + Noto Sans Coptic
+- **Fonts**: JetBrains Mono + Inter
 
-## 🚀 **Getting Started**
+## Getting Started
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd mishriki-redesign
-
 # Install dependencies
 npm install
 
@@ -77,33 +56,20 @@ npm run build
 npm start
 ```
 
-### Development
-```bash
-# Start dev server with Turbopack
-npm run dev
-
-# Build with static export
-npm run build
-
-# Lint code
-npm run lint
-```
-
-## 📁 **Project Structure**
+## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── verses/           # Coptic Bible verses page
-│   ├── lab/             # Shader experiments
-│   ├── globals.css      # Global styles and Matrix theme
-│   ├── layout.tsx       # Root layout
-│   └── page.tsx         # Homepage
+│   ├── lab/           # Shader experiments route
+│   ├── globals.css    # Global styles and Matrix theme
+│   ├── layout.tsx     # Root layout
+│   └── page.tsx       # Homepage
 ├── components/
 │   ├── RainCanvas.tsx      # WebGL Matrix rain
-│   ├── NavBar.tsx          # Modern responsive navigation
+│   ├── NavBar.tsx          # Modern navigation
 │   ├── Hero.tsx            # Hero section with typewriter
-│   ├── MatrixPlayground.tsx # Interactive playground panels
+│   ├── SignalGrid.tsx      # Project showcase
 │   ├── FeedTicker.tsx      # Horizontal marquee
 │   ├── TerminalPulse.tsx   # Live console
 │   ├── ParticleSignature.tsx # ELI particle formation
@@ -113,73 +79,35 @@ src/
     └── feed.json       # Ticker phrases
 ```
 
-## 🎨 **Design System**
+## Customization
 
 ### Colors
-```css
---ink-0: #0b0e11    /* Deep background */
---ink-1: #101418    /* Secondary background */
---matrix: #00ff95   /* Primary Matrix green */
---accent: #9ae6b4   /* Secondary green */
---glow: #b9ffd9     /* Light accent */
-```
+The Matrix theme uses CSS custom properties defined in `globals.css`:
+- `--ink-0`: Deep background (#0b0e11)
+- `--ink-1`: Secondary background (#101418)
+- `--matrix`: Primary Matrix green (#00ff95)
+- `--accent`: Secondary green (#9ae6b4)
+- `--glow`: Light accent (#b9ffd9)
 
-### Typography
-- **Headings**: JetBrains Mono with clamp() scaling
-- **Body**: Inter for readability
-- **Coptic**: Noto Sans Coptic for verses page
-- **Responsive**: Fluid typography from 320px to ultrawide
+### Content
+- Update `src/content/feed.json` for ticker phrases
+- Modify project data in `SignalGrid.tsx`
+- Edit Now/Next items in `NowNext.tsx`
 
-### Layout
-- **Max-width**: `max-w-7xl` with responsive padding
-- **Spacing**: `px-4 md:px-6 lg:px-8` for consistent margins
-- **Grid**: Responsive 1×3 (mobile) to 3×1 (desktop)
+## Performance Notes
 
-## 🌐 **GitHub Pages Deployment**
+- Canvas animations are capped at 60fps
+- Degrades to 30fps on battery saver mode
+- Heavy shaders are deferred offscreen
+- Uses `requestIdleCallback` for non-critical updates
+- Respects `prefers-reduced-motion`
 
-The site is configured for automatic deployment to GitHub Pages:
+## Browser Support
 
-1. **Push to main branch** triggers automatic build
-2. **Static export** generates optimized files
-3. **Custom domain** support (mishriki.org)
-4. **No basePath** for clean URLs
+- Modern browsers with WebGL support
+- Graceful degradation for older browsers
+- Mobile-optimized with touch support
 
-### Manual Deployment
-```bash
-# Build static files
-npm run build
-
-# Files are generated in /out directory
-# Upload to any static hosting service
-```
-
-## 📱 **Responsive Design**
-
-- **Mobile**: 320px+ with pills navigation
-- **Tablet**: 768px+ with optimized spacing
-- **Desktop**: 1024px+ with full navigation
-- **Ultrawide**: Scales gracefully to any width
-
-## ♿ **Accessibility**
-
-- **WCAG AA compliant** contrast ratios
-- **Keyboard navigation** for all interactive elements
-- **Focus indicators** visible on all focusable elements
-- **Reduced motion** support with static fallbacks
-- **Screen reader** friendly markup
-
-## 🎯 **Performance**
-
-- **Lighthouse 95+** scores across all metrics
-- **Static export** for fast loading
-- **Image optimization** with Next.js
-- **Code splitting** for optimal bundle sizes
-- **Canvas throttling** for battery efficiency
-
-## 📄 **License**
+## License
 
 © 2025 mishriki.org · All rights reserved
-
----
-
-Built with ❤️ using Next.js, Three.js, and Framer Motion
