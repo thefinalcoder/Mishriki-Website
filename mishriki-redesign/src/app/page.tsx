@@ -39,7 +39,7 @@ export default function Home() {
       <NowNext />
       
       {/* Footer */}
-      <footer className="py-8 border-t border-[var(--border)]">
+      <footer className="pt-16 pb-8 border-t border-[var(--border)]">
         <div className="text-center" style={{ maxWidth: 'var(--page-max)', margin: '0 auto', paddingInline: 'clamp(16px, 4vw, 32px)' }}>
           <div className="flex items-center justify-center space-x-4 text-sm text-matrix/70 font-mono">
             <span>© 2025 mishriki.org · all rights reserved</span>

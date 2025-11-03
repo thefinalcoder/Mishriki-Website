@@ -101,22 +101,6 @@ export default function Hero() {
         >
           Software Engineer • Cybersecurity • Student
         </motion.p>
-
-        {/* Interactive Elements */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 3 }}
-          className="mt-12 space-y-4"
-        >
-          <div className="flex justify-center space-x-8 text-sm text-matrix/70 font-mono">
-            <span>STATUS: ONLINE</span>
-            <span>•</span>
-            <span>LOADING...</span>
-            <span>•</span>
-            <span>READY</span>
-          </div>
-        </motion.div>
       </div>
 
       {/* CRT Vignette */}

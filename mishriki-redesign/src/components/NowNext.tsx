@@ -16,7 +16,7 @@ const nextItems = [
 
 export default function NowNext() {
   return (
-    <section className="py-20 px-[clamp(16px,4vw,32px)]">
+    <section className="pt-20 pb-32 px-[clamp(16px,4vw,32px)]">
       <div className="max-w-[1200px] mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

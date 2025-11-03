@@ -104,29 +104,34 @@ export default function ParticleSignature() {
           positions[i3] += (targetX - positions[i3]) * 0.05;
           positions[i3 + 1] += (targetY - positions[i3 + 1]) * 0.05;
         } else if (signaturePhase === 2) {
-          // Form "ELI" pattern
-          const letterIndex = Math.floor(i / (particleCount / 3));
+          // Form big "E" pattern
+          const particlesPerSegment = particleCount / 4;
+          const segment = Math.floor(i / particlesPerSegment);
+          const indexInSegment = i % particlesPerSegment;
+          
           let targetX = 0, targetY = 0;
           
-          if (letterIndex === 0) { // E
-            const col = Math.floor((i % (particleCount / 3)) / 20);
-            const row = (i % (particleCount / 3)) % 20;
-            targetX = -4 + col * 0.5;
-            targetY = 2 - row * 0.2;
-          } else if (letterIndex === 1) { // L
-            const col = Math.floor((i % (particleCount / 3)) / 20);
-            const row = (i % (particleCount / 3)) % 20;
-            targetX = -1 + col * 0.5;
-            targetY = 2 - row * 0.2;
-          } else { // I
-            const col = Math.floor((i % (particleCount / 3)) / 20);
-            const row = (i % (particleCount / 3)) % 20;
-            targetX = 2 + col * 0.5;
-            targetY = 2 - row * 0.2;
+          if (segment === 0) {
+            // Vertical spine of E (left side)
+            targetX = -3;
+            targetY = 3 - (indexInSegment / particlesPerSegment) * 6;
+          } else if (segment === 1) {
+            // Top horizontal bar
+            targetX = -3 + (indexInSegment / particlesPerSegment) * 4;
+            targetY = 3;
+          } else if (segment === 2) {
+            // Middle horizontal bar
+            targetX = -3 + (indexInSegment / particlesPerSegment) * 3;
+            targetY = 0;
+          } else {
+            // Bottom horizontal bar
+            targetX = -3 + (indexInSegment / particlesPerSegment) * 4;
+            targetY = -3;
           }
           
           positions[i3] += (targetX - positions[i3]) * 0.1;
           positions[i3 + 1] += (targetY - positions[i3 + 1]) * 0.1;
+          positions[i3 + 2] += (0 - positions[i3 + 2]) * 0.1;
         } else if (signaturePhase === 3) {
           // Dispersing
           positions[i3] += velocities[i3] * 2;
@@ -171,9 +176,6 @@ export default function ParticleSignature() {
           />
         </div>
         
-        <p className="text-accent font-mono text-sm mt-4">
-          particles form signature every 12s
-        </p>
       </div>
     </section>
   );
