@@ -5,8 +5,9 @@
   --ink-0: #0b0e11;
   --ink-1: #101418;
   --matrix: #00ff95;
-  --accent: #9ae6b4;
+  --accent: #7fffd4;
   --glow: #b9ffd9;
+  --border: #7fffd4;
 }
 
 
@@ -127,6 +128,58 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* Unified solid borders - no glowing or translucent effects */
+.frame, .card, .panel, .terminal, .grid-item {
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+  border-radius: 8px;
+  background: transparent;
+}
+
+/* Ensure hover/focus states don't brighten borders */
+.frame:hover, .card:hover, .panel:hover, .terminal:hover, .grid-item:hover,
+.frame:focus, .card:focus, .panel:focus, .terminal:focus, .grid-item:focus {
+  border-color: var(--border) !important;
+  box-shadow: none !important;
+}
+
+/* Center main content */
+.hero-section {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  max-width: 960px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.main-content {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .signal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .signal-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }
 
 @layer utilities {

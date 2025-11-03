@@ -61,8 +61,8 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="text-center z-10">
+    <section className="relative min-h-[100svh] grid place-items-center overflow-hidden">
+      <div className="text-center z-10 max-w-[960px] mx-auto px-[clamp(16px,4vw,32px)]">
         {/* Main Title */}
         <motion.h1
           initial={{ opacity: 0, y: 50 }}

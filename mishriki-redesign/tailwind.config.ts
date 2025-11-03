@@ -14,7 +14,7 @@ const config: Config = {
           1: '#101418',
         },
         matrix: '#00ff95',
-        accent: '#9ae6b4',
+        accent: '#7fffd4',
         glow: '#b9ffd9',
       },
       fontFamily: {

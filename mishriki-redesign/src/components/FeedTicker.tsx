@@ -13,7 +13,7 @@ export default function FeedTicker() {
   }, []);
 
   return (
-    <section className="py-12 border-y border-matrix/20">
+    <section className="py-12 border-y border-[var(--border)]">
       <div className="overflow-hidden">
         <motion.div
           className="flex whitespace-nowrap"

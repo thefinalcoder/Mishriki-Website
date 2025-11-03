@@ -18,8 +18,8 @@ const nextItems = [
 
 export default function NowNext() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 px-[clamp(16px,4vw,32px)]">
+      <div className="max-w-[1200px] mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export default function NowNext() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-ink-1 border border-matrix/20 rounded-lg p-8"
+            className="bg-transparent border border-[var(--border)] rounded-lg p-8"
           >
             <h3 className="text-xl font-mono font-bold text-matrix mb-6 flex items-center">
               <span className="w-3 h-3 bg-matrix rounded-full mr-3 animate-pulse"></span>
@@ -64,7 +64,7 @@ export default function NowNext() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-ink-1 border border-matrix/20 rounded-lg p-8"
+            className="bg-transparent border border-[var(--border)] rounded-lg p-8"
           >
             <h3 className="text-xl font-mono font-bold text-matrix mb-6 flex items-center">
               <span className="w-3 h-3 bg-accent rounded-full mr-3"></span>

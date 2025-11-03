@@ -50,16 +50,16 @@ export default function TerminalPulse() {
   }, [currentSnippet]);
 
   return (
-    <section className="py-16 px-6">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-16 px-[clamp(16px,4vw,32px)]">
+      <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-ink-1 border border-matrix/30 rounded-lg p-6 font-mono"
+          className="bg-transparent border border-[var(--border)] rounded-lg p-6 font-mono"
         >
           {/* Terminal Header */}
-          <div className="flex items-center space-x-2 mb-4 pb-2 border-b border-matrix/20">
+          <div className="flex items-center space-x-2 mb-4 pb-2 border-b border-[var(--border)]">
             <div className="flex space-x-1">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>

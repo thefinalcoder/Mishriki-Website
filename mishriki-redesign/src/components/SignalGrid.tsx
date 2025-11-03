@@ -71,8 +71,8 @@ export default function SignalGrid() {
   };
 
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-[clamp(16px,4vw,32px)]">
+      <div className="max-w-[1200px] mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ export default function SignalGrid() {
           SIGNAL GRID
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -96,7 +96,7 @@ export default function SignalGrid() {
               onClick={() => handleProjectClick(project.id)}
             >
               {/* Project Card */}
-              <div className="relative aspect-square bg-ink-1 border border-matrix/20 rounded-lg overflow-hidden">
+              <div className="relative aspect-square bg-transparent border border-[var(--border)] rounded-lg overflow-hidden">
                 {/* Shader Canvas */}
                 <canvas
                   ref={(el) => {
@@ -113,7 +113,7 @@ export default function SignalGrid() {
                   animate={{ 
                     opacity: hoveredProject === project.id ? 1 : 0 
                   }}
-                  className="absolute inset-0 bg-matrix/10 flex items-center justify-center"
+                  className="absolute inset-0 bg-ink-1/50 flex items-center justify-center"
                 >
                   <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
@@ -126,15 +126,6 @@ export default function SignalGrid() {
                     {project.label}
                   </motion.div>
                 </motion.div>
-
-                {/* Border Glow */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ 
-                    opacity: hoveredProject === project.id ? 1 : 0 
-                  }}
-                  className="absolute inset-0 border-2 border-matrix rounded-lg"
-                />
               </div>
 
               {/* Project Label */}
@@ -162,7 +153,7 @@ export default function SignalGrid() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-ink-1 border border-matrix/30 rounded-lg p-8 max-w-2xl w-full"
+              className="bg-transparent border border-[var(--border)] rounded-lg p-8 max-w-2xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="text-center">
@@ -170,7 +161,7 @@ export default function SignalGrid() {
                   {projects.find(p => p.id === selectedProject)?.label}
                 </h3>
                 
-                <div className="bg-ink-0 border border-matrix/20 rounded p-6 mb-6">
+                <div className="bg-transparent border border-[var(--border)] rounded p-6 mb-6">
                   <code className="text-accent font-mono text-lg">
                     {codePoems[selectedProject as keyof typeof codePoems]}
                   </code>
@@ -180,7 +171,7 @@ export default function SignalGrid() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-2 bg-matrix text-ink-0 font-mono font-bold rounded hover:bg-accent transition-colors"
+                    className="px-6 py-2 bg-matrix text-ink-0 font-mono font-bold rounded transition-colors"
                   >
                     View Details
                   </motion.button>
@@ -189,7 +180,7 @@ export default function SignalGrid() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={closeModal}
-                    className="px-6 py-2 border border-matrix text-matrix font-mono font-bold rounded hover:bg-matrix/10 transition-colors"
+                    className="px-6 py-2 border border-[var(--border)] text-matrix font-mono font-bold rounded transition-colors"
                   >
                     Close
                   </motion.button>

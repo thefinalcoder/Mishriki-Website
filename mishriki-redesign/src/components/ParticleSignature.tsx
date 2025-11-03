@@ -152,8 +152,8 @@ export default function ParticleSignature() {
   }, []);
 
   return (
-    <section className="py-16 px-6">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="py-16 px-[clamp(16px,4vw,32px)]">
+      <div className="max-w-[1200px] mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -166,7 +166,7 @@ export default function ParticleSignature() {
         <div className="flex justify-center">
           <canvas
             ref={canvasRef}
-            className="border border-matrix/30 rounded-lg"
+            className="border border-[var(--border)] rounded-lg"
             style={{ width: '400px', height: '200px' }}
           />
         </div>
