@@ -61,8 +61,8 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] grid place-items-center overflow-hidden">
-      <div className="text-center z-10 max-w-[960px] mx-auto px-[clamp(16px,4vw,32px)]">
+    <section className="hero relative overflow-hidden">
+      <div className="text-center z-10">
         {/* Main Title */}
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
@@ -99,7 +99,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 2.5 }}
           className="text-xl md:text-2xl text-accent font-mono mt-8"
         >
-          systems • security • networks • shaders
+          Software Engineer • Cybersecurity • Student
         </motion.p>
 
         {/* Interactive Elements */}

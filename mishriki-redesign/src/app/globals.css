@@ -2,12 +2,14 @@
 @import "tailwindcss";
 
 :root {
+  --bg: #0b1111;
   --ink-0: #0b0e11;
   --ink-1: #101418;
   --matrix: #00ff95;
   --accent: #7fffd4;
   --glow: #b9ffd9;
-  --border: #7fffd4;
+  --border: var(--accent);
+  --page-max: 1200px;
 }
 
 
@@ -19,14 +21,24 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg) !important;
+  min-height: 100%;
 }
 
 body {
-  background-color: var(--ink-0);
-  color: var(--glow);
+  background: var(--bg) !important;
+  color: #c8fff1;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
+}
+
+/* Remove decorative dark side columns */
+body::before,
+body::after,
+.page::before,
+.page::after {
+  content: none !important;
 }
 
 /* Matrix rain canvas */
@@ -40,7 +52,7 @@ body {
   pointer-events: none;
 }
 
-/* CRT effects */
+/* CRT effects - uniform scanlines only */
 .crt-overlay {
   position: fixed;
   top: 0;
@@ -49,28 +61,14 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 1000;
-  background: linear-gradient(
-    transparent 50%,
-    rgba(0, 255, 149, 0.03) 50%
-  );
-  background-size: 100% 4px;
-  animation: scanline 0.1s linear infinite;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
+  background-color: var(--bg);
+  background-size: auto;
 }
 
+/* VIGNETTE REMOVED - caused dark side columns */
 .crt-vignette {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 999;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 0%,
-    transparent 60%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
+  display: none !important;
 }
 
 /* Reduced motion support */
@@ -131,22 +129,33 @@ body {
 }
 
 /* Unified solid borders - no glowing or translucent effects */
-.frame, .card, .panel, .terminal, .grid-item {
+.frame, .card, .panel, .terminal, .grid-item, header, footer {
   border: 1px solid var(--border) !important;
   box-shadow: none !important;
   border-radius: 8px;
   background: transparent;
 }
 
+/* Hover state: motion instead of brighter border */
+.card:hover {
+  transform: translateY(-2px);
+}
+
 /* Ensure hover/focus states don't brighten borders */
-.frame:hover, .card:hover, .panel:hover, .terminal:hover, .grid-item:hover,
+.frame:hover, .panel:hover, .terminal:hover, .grid-item:hover,
 .frame:focus, .card:focus, .panel:focus, .terminal:focus, .grid-item:focus {
   border-color: var(--border) !important;
   box-shadow: none !important;
 }
 
-/* Center main content */
-.hero-section {
+/* Focus visible styles */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* TRUE MIDDLE-CENTERING - Hero */
+.hero {
   min-height: 100svh;
   display: grid;
   place-items: center;
@@ -156,10 +165,19 @@ body {
   padding-inline: clamp(16px, 4vw, 32px);
 }
 
-.main-content {
-  max-width: 1200px;
+.hero > * {
+  margin: 0;
+}
+
+/* CENTER ALL SUBSEQUENT SECTIONS */
+.main, .page, .app, main {
+  max-width: var(--page-max);
   margin-inline: auto;
   padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.row, .section {
+  margin-inline: auto;
 }
 
 .signal-grid {
@@ -170,6 +188,7 @@ body {
   margin: 0 auto;
 }
 
+/* SAFEGUARDS - Desktop & Mobile */
 @media (max-width: 1024px) {
   .signal-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -178,7 +197,11 @@ body {
 
 @media (max-width: 640px) {
   .signal-grid {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+  }
+  
+  .hero {
+    min-height: 90svh;
   }
 }
 

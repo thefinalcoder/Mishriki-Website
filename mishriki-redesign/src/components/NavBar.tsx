@@ -46,7 +46,7 @@ export default function NavBar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="mx-auto px-6 py-4" style={{ maxWidth: 'var(--page-max)' }}>
         <div className="flex items-center justify-between">
           {/* Wordmark */}
           <motion.button
