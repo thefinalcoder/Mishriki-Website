@@ -3,6 +3,7 @@
 
 :root {
   --bg: #0b1111;
+  --fg: #c8fff1;
   --ink-0: #0b0e11;
   --ink-1: #101418;
   --matrix: #00ff95;
@@ -27,7 +28,7 @@ html {
 
 body {
   background: var(--bg) !important;
-  color: #c8fff1;
+  color: var(--fg) !important;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
@@ -37,7 +38,9 @@ body {
 body::before,
 body::after,
 .page::before,
-.page::after {
+.page::after,
+.app::before,
+.app::after {
   content: none !important;
 }
 
@@ -52,7 +55,7 @@ body::after,
   pointer-events: none;
 }
 
-/* CRT effects - uniform scanlines only */
+/* CRT effects - uniform scanlines only (no background color to prevent covering content) */
 .crt-overlay {
   position: fixed;
   top: 0;
@@ -61,14 +64,20 @@ body::after,
   height: 100%;
   pointer-events: none;
   z-index: 1000;
-  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
-  background-color: var(--bg);
-  background-size: auto;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
 }
 
 /* VIGNETTE REMOVED - caused dark side columns */
 .crt-vignette {
   display: none !important;
+}
+
+/* Optional: uniform scanlines that don't cover content */
+.scanlines {
+  position: static;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 3px);
+  background-color: var(--bg);
+  pointer-events: none;
 }
 
 /* Reduced motion support */
@@ -154,10 +163,27 @@ a:focus-visible, button:focus-visible {
   outline-offset: 2px;
 }
 
+/* SAFETY RESETS - prevent blanking */
+body, main, .hero, .main {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Kill any full-screen overlays that shade sides */
+.overlay, .shade, .vignette {
+  display: none !important;
+}
+
+/* Undo accidental off-screen transforms */
+.hero, .main, .page, .app {
+  transform: none !important;
+}
+
 /* TRUE MIDDLE-CENTERING - Hero */
 .hero {
   min-height: 100svh;
-  display: grid;
+  display: grid !important;
   place-items: center;
   text-align: center;
   max-width: 960px;
@@ -180,11 +206,12 @@ a:focus-visible, button:focus-visible {
   margin-inline: auto;
 }
 
+/* Signal grid centered */
 .signal-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-  max-width: 1200px;
+  max-width: var(--page-max);
   margin: 0 auto;
 }
 
