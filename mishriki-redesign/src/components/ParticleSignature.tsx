@@ -204,10 +204,6 @@ export default function ParticleSignature() {
             style={{ width: '400px', height: '200px' }}
           />
         </div>
-        
-        <p className="text-accent font-mono text-sm mt-4">
-          particles cycle through shapes every 8s • ring → pyramid → cube → sphere → spiral
-        </p>
       </div>
     </section>
   );
