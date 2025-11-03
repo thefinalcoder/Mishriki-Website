@@ -3,17 +3,15 @@
 import { motion } from 'framer-motion';
 
 const nowItems = [
-  'security engineering @ company',
-  'building tools for developers',
-  'exploring web3 protocols',
-  'contributing to open source',
+  'software engineer @ VLI-EV',
+  'ISA for Wireless Security',
+  'student at San Diego State University',
 ];
 
 const nextItems = [
-  'exploring GPU shaders',
-  'writing about systems design',
-  'building a new framework',
-  'researching AI safety',
+  'begin full time employment',
+  'pursue person projects',
+  'be a leader in the community',
 ];
 
 export default function NowNext() {
