@@ -105,12 +105,6 @@ export default function TerminalPulse() {
               </motion.span>
             )}
           </div>
-
-          {/* Status Indicator */}
-          <div className="mt-4 flex items-center space-x-2 text-xs text-matrix/50">
-            <div className="w-2 h-2 bg-matrix rounded-full animate-pulse"></div>
-            <span>system active</span>
-          </div>
         </motion.div>
       </div>
     </section>

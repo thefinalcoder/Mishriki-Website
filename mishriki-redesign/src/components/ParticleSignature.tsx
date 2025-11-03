@@ -59,6 +59,8 @@ export default function ParticleSignature() {
     
     let time = 0;
     let signaturePhase = 0; // 0: random, 1: forming, 2: formed, 3: dispersing
+    let currentShape = 0; // 0: ring, 1: pyramid, 2: cube, 3: sphere, 4: spiral
+    const shapes = ['ring', 'pyramid', 'cube', 'sphere', 'spiral'];
     
     // Animation loop
     const animate = () => {
@@ -68,8 +70,8 @@ export default function ParticleSignature() {
       
       const positions = particles.geometry.attributes.position.array as Float32Array;
       
-      // Form signature every 12 seconds
-      if (Math.floor(time / 12) !== Math.floor((time - 0.01) / 12)) {
+      // Form signature every 8 seconds, cycle through shapes
+      if (Math.floor(time / 8) !== Math.floor((time - 0.01) / 8)) {
         signaturePhase = 1; // Start forming
         setTimeout(() => {
           signaturePhase = 2; // Formed
@@ -77,9 +79,10 @@ export default function ParticleSignature() {
             signaturePhase = 3; // Start dispersing
             setTimeout(() => {
               signaturePhase = 0; // Back to random
-            }, 2000);
-          }, 3000);
-        }, 2000);
+              currentShape = (currentShape + 1) % shapes.length; // Next shape
+            }, 1500);
+          }, 2500);
+        }, 1500);
       }
       
       for (let i = 0; i < particleCount; i++) {
@@ -104,34 +107,60 @@ export default function ParticleSignature() {
           positions[i3] += (targetX - positions[i3]) * 0.05;
           positions[i3 + 1] += (targetY - positions[i3 + 1]) * 0.05;
         } else if (signaturePhase === 2) {
-          // Form big "E" pattern
-          const particlesPerSegment = particleCount / 4;
-          const segment = Math.floor(i / particlesPerSegment);
-          const indexInSegment = i % particlesPerSegment;
+          // Form different shapes based on currentShape
+          let targetX = 0, targetY = 0, targetZ = 0;
           
-          let targetX = 0, targetY = 0;
-          
-          if (segment === 0) {
-            // Vertical spine of E (left side)
-            targetX = -3;
-            targetY = 3 - (indexInSegment / particlesPerSegment) * 6;
-          } else if (segment === 1) {
-            // Top horizontal bar
-            targetX = -3 + (indexInSegment / particlesPerSegment) * 4;
-            targetY = 3;
-          } else if (segment === 2) {
-            // Middle horizontal bar
-            targetX = -3 + (indexInSegment / particlesPerSegment) * 3;
-            targetY = 0;
+          if (currentShape === 0) {
+            // RING
+            const angle = (i / particleCount) * Math.PI * 2;
+            targetX = Math.cos(angle) * 4;
+            targetY = Math.sin(angle) * 2.5;
+            targetZ = 0;
+          } else if (currentShape === 1) {
+            // PYRAMID
+            const layer = Math.floor(Math.sqrt(i / particleCount) * 10);
+            const posInLayer = i - (layer * layer * particleCount / 100);
+            const layerSize = (10 - layer) / 10;
+            const angle = (posInLayer / (particleCount / 10)) * Math.PI * 2;
+            targetX = Math.cos(angle) * layerSize * 3;
+            targetY = -3 + layer * 0.6;
+            targetZ = Math.sin(angle) * layerSize * 3;
+          } else if (currentShape === 2) {
+            // CUBE
+            const face = Math.floor(i / (particleCount / 6));
+            const posInFace = i % (particleCount / 6);
+            const gridSize = Math.sqrt(particleCount / 6);
+            const row = Math.floor(posInFace / gridSize);
+            const col = posInFace % gridSize;
+            const u = (col / gridSize - 0.5) * 4;
+            const v = (row / gridSize - 0.5) * 4;
+            
+            if (face === 0) { targetX = 2; targetY = v; targetZ = u; }       // right
+            else if (face === 1) { targetX = -2; targetY = v; targetZ = -u; } // left
+            else if (face === 2) { targetX = u; targetY = 2; targetZ = v; }   // top
+            else if (face === 3) { targetX = u; targetY = -2; targetZ = -v; } // bottom
+            else if (face === 4) { targetX = u; targetY = v; targetZ = 2; }   // front
+            else { targetX = -u; targetY = v; targetZ = -2; }                 // back
+          } else if (currentShape === 3) {
+            // SPHERE
+            const phi = Math.acos(-1 + (2 * i) / particleCount);
+            const theta = Math.sqrt(particleCount * Math.PI) * phi;
+            const radius = 3;
+            targetX = radius * Math.cos(theta) * Math.sin(phi);
+            targetY = radius * Math.sin(theta) * Math.sin(phi);
+            targetZ = radius * Math.cos(phi);
           } else {
-            // Bottom horizontal bar
-            targetX = -3 + (indexInSegment / particlesPerSegment) * 4;
-            targetY = -3;
+            // SPIRAL
+            const t = (i / particleCount) * Math.PI * 6;
+            const radius = 0.3 + t * 0.3;
+            targetX = Math.cos(t) * radius;
+            targetY = (i / particleCount - 0.5) * 6;
+            targetZ = Math.sin(t) * radius;
           }
           
-          positions[i3] += (targetX - positions[i3]) * 0.1;
-          positions[i3 + 1] += (targetY - positions[i3 + 1]) * 0.1;
-          positions[i3 + 2] += (0 - positions[i3 + 2]) * 0.1;
+          positions[i3] += (targetX - positions[i3]) * 0.08;
+          positions[i3 + 1] += (targetY - positions[i3 + 1]) * 0.08;
+          positions[i3 + 2] += (targetZ - positions[i3 + 2]) * 0.08;
         } else if (signaturePhase === 3) {
           // Dispersing
           positions[i3] += velocities[i3] * 2;
@@ -176,6 +205,9 @@ export default function ParticleSignature() {
           />
         </div>
         
+        <p className="text-accent font-mono text-sm mt-4">
+          particles cycle through shapes every 8s • ring → pyramid → cube → sphere → spiral
+        </p>
       </div>
     </section>
   );
